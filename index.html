@@ -31,28 +31,12 @@
     d.setAttribute('data-palette', p);
     d.setAttribute('data-mode', m);
     var rm = mm && mm('(prefers-reduced-motion: reduce)').matches;
-    var sd = navigator.connection && navigator.connection.saveData;
-    var q = location.search;
-    var gl = false;
-    try {
-      var c = document.createElement('canvas'), x = c.getContext('webgl2') || c.getContext('webgl');
-      if (x) {
-        var ri = x.getExtension('WEBGL_debug_renderer_info');
-        var rn = ri ? String(x.getParameter(ri.UNMASKED_RENDERER_WEBGL)) : '';
-        gl = !/swiftshader|llvmpipe|software|basic render/i.test(rn) || /[?&]boot3d/.test(q);
-        var lc = x.getExtension('WEBGL_lose_context'); if (lc) lc.loseContext();
-      }
-    } catch (e) {}
     d.classList.add('js');
     if (!rm) d.classList.add('motion');
-    if (!rm && !sd && gl && !/[?&]no3d/.test(q)) d.classList.add('fx');
   })();
 </script>
-<link rel="stylesheet" href="assets/css/site.css?v=202610082212">
-<script type="importmap">
-{ "imports": { "three": "./assets/vendor/three/three.module.min.js" } }
-</script>
-<script type="module" src="assets/js/main.js?v=202610082212"></script>
+<link rel="stylesheet" href="assets/css/site.css?v=20261008225913">
+<script type="module" src="assets/js/main.js?v=20261008225150"></script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -132,24 +116,37 @@
 
 <!-- HERO -->
 <section class="hero" id="top" aria-labelledby="hero-title">
+  <div class="hero-media" aria-hidden="true">
+    <picture class="hero-slide"><source type="image/avif" srcset="assets/img/photos/home-480.avif 480w, assets/img/photos/home-800.avif 800w, assets/img/photos/home-1200.avif 1200w" sizes="100vw"><img src="assets/img/photos/home-800.webp" srcset="assets/img/photos/home-480.webp 480w, assets/img/photos/home-800.webp 800w, assets/img/photos/home-1200.webp 1200w" sizes="100vw" width="1200" height="800" alt="" fetchpriority="high" decoding="async"></picture>
+    <picture class="hero-slide"><source type="image/avif" srcset="assets/img/photos/dignity-480.avif 480w, assets/img/photos/dignity-800.avif 800w, assets/img/photos/dignity-1200.avif 1200w" sizes="100vw"><img src="assets/img/photos/dignity-800.webp" srcset="assets/img/photos/dignity-480.webp 480w, assets/img/photos/dignity-800.webp 800w, assets/img/photos/dignity-1200.webp 1200w" sizes="100vw" width="1200" height="800" alt="" loading="lazy" decoding="async"></picture>
+    <picture class="hero-slide"><source type="image/avif" srcset="assets/img/photos/soldiers-480.avif 480w, assets/img/photos/soldiers-800.avif 800w, assets/img/photos/soldiers-1200.avif 1200w" sizes="100vw"><img src="assets/img/photos/soldiers-800.webp" srcset="assets/img/photos/soldiers-480.webp 480w, assets/img/photos/soldiers-800.webp 800w, assets/img/photos/soldiers-1200.webp 1200w" sizes="100vw" width="1200" height="800" alt="" loading="lazy" decoding="async"></picture>
+  </div>
   <div class="hero-stage">
-    <canvas class="hero-canvas" aria-hidden="true"></canvas>
     <div class="hero-copy">
-      <div class="title-frame">
-        <i class="tf-corner"></i><i class="tf-corner"></i><i class="tf-corner"></i><i class="tf-corner"></i><i class="tf-sheen"></i><i class="tf-glow"></i>
-        <h1 class="hero-title" id="hero-title">חסד יסובבנו</h1>
-        <p class="hero-sub">הלב הפועם של כולנו</p>
-      </div>
-      <svg class="orn" aria-hidden="true"><use href="#orn"/></svg>
       <p class="hero-verse">וְהַבּוֹטֵחַ בַּה' חֶסֶד יְסוֹבְבֶנּוּ</p>
+      <div class="plaque-wrap">
+        <span class="plaque-halo" aria-hidden="true"></span>
+        <div class="plaque">
+          <span class="plaque-light" aria-hidden="true"></span>
+          <i class="pq-orn" aria-hidden="true"></i><i class="pq-orn" aria-hidden="true"></i><i class="pq-orn" aria-hidden="true"></i><i class="pq-orn" aria-hidden="true"></i>
+          <p class="plaque-kicker">ארגון</p>
+          <h1 class="hero-title" id="hero-title">חסד יסובבנו</h1>
+          <p class="hero-sub">הלב הפועם של כולנו</p>
+        </div>
+      </div>
+      <p class="hero-lead">בנשיאות הרב שלום יוסף ברבי שליט״א</p>
+      <ul class="hero-facts">
+        <li><b dir="ltr">15+</b><span>שנות פעילות</span></li>
+        <li><b>7</b><span>עמודי תווך</span></li>
+        <li><b>אלפי</b><span>משפחות</span></li>
+      </ul>
       <div class="hero-ctas">
         <a class="btn btn--lg" href="donate/"><svg width="17" height="17" aria-hidden="true"><use href="#i-heart"/></svg>לתרומה</a>
         <a class="btn btn--lg btn--line" href="#about">אודות הארגון</a>
-        <a class="btn btn--lg btn--line" href="#contact">צרו קשר</a>
       </div>
     </div>
-    <div class="scroll-cue" aria-hidden="true"></div>
   </div>
+  <div class="scroll-cue" aria-hidden="true"></div>
 </section>
 
 <!-- ABOUT -->
@@ -157,7 +154,7 @@
   <div class="container narrow">
     <header class="cartouche reveal">
       <p class="kicker">מי אנחנו</p>
-      <h2 class="title" id="about-title">אודות הארגון</h2>
+      <h2 class="title" id="about-title"><span class="split">אודות הארגון</span></h2>
       <p class="lede">למעלה מ־15 שנה של חסד ואהבת ישראל, בנתיבות ומעבר לה</p>
     </header>
     <article class="card about-panel reveal">
@@ -178,7 +175,7 @@
   <div class="container">
     <header class="cartouche reveal">
       <p class="kicker">מאז 2009</p>
-      <h2 class="title" id="timeline-title">הסיפור שלנו</h2>
+      <h2 class="title" id="timeline-title"><span class="split">הסיפור שלנו</span></h2>
       <p class="lede">ציוני דרך במסע של חסד</p>
     </header>
     <ol class="tl">
@@ -195,7 +192,7 @@
   <div class="container">
     <header class="cartouche reveal">
       <p class="kicker">במבט אחד</p>
-      <h2 class="title" id="stats-title">בנתונים</h2>
+      <h2 class="title" id="stats-title"><span class="split">בנתונים</span></h2>
       <p class="lede">מה שעומד מאחורי השם חסד יסובבנו</p>
     </header>
     <div class="card stats-band reveal">
@@ -214,18 +211,28 @@
   <div class="container">
     <header class="cartouche reveal">
       <p class="kicker">שבעה תחומים</p>
-      <h2 class="title" id="pillars-title">עמודי התווך</h2>
+      <h2 class="title" id="pillars-title"><span class="split">עמודי התווך</span></h2>
       <p class="lede">בכל אחד מהם יד מושטת, כל יום</p>
     </header>
     <ol class="pillars-grid">
-      <li class="card card--night pillar lift reveal"><span class="p-num" aria-hidden="true">01</span><span class="medal"><svg width="28" height="28" aria-hidden="true"><use href="#i-dignity"/></svg></span><h3>קיום בכבוד</h3><p>סיוע חומרי ומעשי לאנשים הנמצאים במצוקה כלכלית, תוך שמירה מוחלטת על כבוד האדם ופרטיותו.</p></li>
-      <li class="card card--night pillar lift reveal"><span class="p-num" aria-hidden="true">02</span><span class="medal"><svg width="28" height="28" aria-hidden="true"><use href="#i-soul"/></svg></span><h3>ריפוי הנפש</h3><p>ליווי ויעוץ רגשי, תמיכה נפשית ומתן כוח להמשך הדרך בעתות קושי וסערה.</p></li>
-      <li class="card card--night pillar lift reveal"><span class="p-num" aria-hidden="true">03</span><span class="medal"><svg width="28" height="28" aria-hidden="true"><use href="#i-home"/></svg></span><h3>ביצור הבית היהודי</h3><p>חיזוק מוסד המשפחה, סיוע לזוגות צעירים וגיבוש הזהות היהודית בתוך הבית.</p></li>
-      <li class="card card--night pillar lift reveal"><span class="p-num" aria-hidden="true">04</span><span class="medal"><svg width="28" height="28" aria-hidden="true"><use href="#i-medical"/></svg></span><h3>תמיכה במצבי חולי</h3><p>סיוע מקיף למשפחות המתמודדות עם מחלה: רפואי, כלכלי ורגשי, לכל אורך הדרך.</p></li>
-      <li class="card card--night pillar lift reveal"><span class="p-num" aria-hidden="true">05</span><span class="medal"><svg width="28" height="28" aria-hidden="true"><use href="#i-seedling"/></svg></span><h3>השקעה בדור העתיד</h3><p>חינוך ילדים ונוער, מלגות ותמיכה בצעירים המבקשים לבנות עתיד טוב ומלא תקווה.</p></li>
-      <li class="card card--night pillar lift reveal"><span class="p-num" aria-hidden="true">06</span><span class="medal"><svg width="28" height="28" aria-hidden="true"><use href="#i-shield"/></svg></span><h3>הוקרה ללוחמים</h3><p>תמיכה ואהבה לחיילי צבא ישראל ולמשפחותיהם, בזמן מלחמה ובזמן שגרה.</p></li>
-      <li class="card card--night pillar lift reveal"><span class="p-num" aria-hidden="true">07</span><span class="medal"><svg width="28" height="28" aria-hidden="true"><use href="#i-book"/></svg></span><h3>קול התורה</h3><p>הפצת תורה וידע יהודי, שמירה על המסורת העשירה והעברתה בגאווה לדורות הבאים.</p></li>
+      <li class="card card--night pillar lift reveal"><picture class="p-photo"><source type="image/avif" srcset="assets/img/photos/dignity-480.avif 480w, assets/img/photos/dignity-800.avif 800w, assets/img/photos/dignity-1200.avif 1200w" sizes="(min-width: 1024px) 270px, (min-width: 561px) 45vw, 92vw"><img src="assets/img/photos/dignity-800.webp" srcset="assets/img/photos/dignity-480.webp 480w, assets/img/photos/dignity-800.webp 800w, assets/img/photos/dignity-1200.webp 1200w" sizes="(min-width: 1024px) 270px, (min-width: 561px) 45vw, 92vw" width="1200" height="800" alt="" loading="lazy" decoding="async"></picture><span class="p-num" aria-hidden="true">01</span><span class="medal"><svg width="28" height="28" aria-hidden="true"><use href="#i-dignity"/></svg></span><h3>קיום בכבוד</h3><p>סיוע חומרי ומעשי לאנשים הנמצאים במצוקה כלכלית, תוך שמירה מוחלטת על כבוד האדם ופרטיותו.</p></li>
+      <li class="card card--night pillar lift reveal"><picture class="p-photo"><source type="image/avif" srcset="assets/img/photos/soul-negev-480.avif 480w, assets/img/photos/soul-negev-800.avif 800w, assets/img/photos/soul-negev-1200.avif 1200w" sizes="(min-width: 1024px) 270px, (min-width: 561px) 45vw, 92vw"><img src="assets/img/photos/soul-negev-800.webp" srcset="assets/img/photos/soul-negev-480.webp 480w, assets/img/photos/soul-negev-800.webp 800w, assets/img/photos/soul-negev-1200.webp 1200w" sizes="(min-width: 1024px) 270px, (min-width: 561px) 45vw, 92vw" width="1200" height="800" alt="" loading="lazy" decoding="async"></picture><span class="p-num" aria-hidden="true">02</span><span class="medal"><svg width="28" height="28" aria-hidden="true"><use href="#i-soul"/></svg></span><h3>ריפוי הנפש</h3><p>ליווי ויעוץ רגשי, תמיכה נפשית ומתן כוח להמשך הדרך בעתות קושי וסערה.</p></li>
+      <li class="card card--night pillar lift reveal"><picture class="p-photo"><source type="image/avif" srcset="assets/img/photos/home-480.avif 480w, assets/img/photos/home-800.avif 800w, assets/img/photos/home-1200.avif 1200w" sizes="(min-width: 1024px) 270px, (min-width: 561px) 45vw, 92vw"><img src="assets/img/photos/home-800.webp" srcset="assets/img/photos/home-480.webp 480w, assets/img/photos/home-800.webp 800w, assets/img/photos/home-1200.webp 1200w" sizes="(min-width: 1024px) 270px, (min-width: 561px) 45vw, 92vw" width="1200" height="800" alt="" loading="lazy" decoding="async"></picture><span class="p-num" aria-hidden="true">03</span><span class="medal"><svg width="28" height="28" aria-hidden="true"><use href="#i-home"/></svg></span><h3>ביצור הבית היהודי</h3><p>חיזוק מוסד המשפחה, סיוע לזוגות צעירים וגיבוש הזהות היהודית בתוך הבית.</p></li>
+      <li class="card card--night pillar lift reveal"><picture class="p-photo"><source type="image/avif" srcset="assets/img/photos/medical-corridor-480.avif 480w, assets/img/photos/medical-corridor-800.avif 800w, assets/img/photos/medical-corridor-1200.avif 1200w" sizes="(min-width: 1024px) 270px, (min-width: 561px) 45vw, 92vw"><img src="assets/img/photos/medical-corridor-800.webp" srcset="assets/img/photos/medical-corridor-480.webp 480w, assets/img/photos/medical-corridor-800.webp 800w, assets/img/photos/medical-corridor-1200.webp 1200w" sizes="(min-width: 1024px) 270px, (min-width: 561px) 45vw, 92vw" width="1200" height="800" alt="" loading="lazy" decoding="async"></picture><span class="p-num" aria-hidden="true">04</span><span class="medal"><svg width="28" height="28" aria-hidden="true"><use href="#i-medical"/></svg></span><h3>תמיכה במצבי חולי</h3><p>סיוע מקיף למשפחות המתמודדות עם מחלה: רפואי, כלכלי ורגשי, לכל אורך הדרך.</p></li>
+      <li class="card card--night pillar lift reveal"><picture class="p-photo"><source type="image/avif" srcset="assets/img/photos/future-class-480.avif 480w, assets/img/photos/future-class-800.avif 800w, assets/img/photos/future-class-1200.avif 1200w" sizes="(min-width: 1024px) 270px, (min-width: 561px) 45vw, 92vw"><img src="assets/img/photos/future-class-800.webp" srcset="assets/img/photos/future-class-480.webp 480w, assets/img/photos/future-class-800.webp 800w, assets/img/photos/future-class-1200.webp 1200w" sizes="(min-width: 1024px) 270px, (min-width: 561px) 45vw, 92vw" width="1200" height="800" alt="" loading="lazy" decoding="async"></picture><span class="p-num" aria-hidden="true">05</span><span class="medal"><svg width="28" height="28" aria-hidden="true"><use href="#i-seedling"/></svg></span><h3>השקעה בדור העתיד</h3><p>חינוך ילדים ונוער, מלגות ותמיכה בצעירים המבקשים לבנות עתיד טוב ומלא תקווה.</p></li>
+      <li class="card card--night pillar lift reveal"><picture class="p-photo"><source type="image/avif" srcset="assets/img/photos/soldiers-480.avif 480w, assets/img/photos/soldiers-800.avif 800w, assets/img/photos/soldiers-1200.avif 1200w" sizes="(min-width: 1024px) 270px, (min-width: 561px) 45vw, 92vw"><img src="assets/img/photos/soldiers-800.webp" srcset="assets/img/photos/soldiers-480.webp 480w, assets/img/photos/soldiers-800.webp 800w, assets/img/photos/soldiers-1200.webp 1200w" sizes="(min-width: 1024px) 270px, (min-width: 561px) 45vw, 92vw" width="1200" height="800" alt="" loading="lazy" decoding="async"></picture><span class="p-num" aria-hidden="true">06</span><span class="medal"><svg width="28" height="28" aria-hidden="true"><use href="#i-shield"/></svg></span><h3>הוקרה ללוחמים</h3><p>תמיכה ואהבה לחיילי צבא ישראל ולמשפחותיהם, בזמן מלחמה ובזמן שגרה.</p></li>
+      <li class="card card--night pillar lift reveal"><picture class="p-photo"><source type="image/avif" srcset="assets/img/photos/torah-480.avif 480w, assets/img/photos/torah-800.avif 800w, assets/img/photos/torah-1200.avif 1200w" sizes="(min-width: 1024px) 270px, (min-width: 561px) 45vw, 92vw"><img src="assets/img/photos/torah-800.webp" srcset="assets/img/photos/torah-480.webp 480w, assets/img/photos/torah-800.webp 800w, assets/img/photos/torah-1200.webp 1200w" sizes="(min-width: 1024px) 270px, (min-width: 561px) 45vw, 92vw" width="1200" height="800" alt="" loading="lazy" decoding="async"></picture><span class="p-num" aria-hidden="true">07</span><span class="medal"><svg width="28" height="28" aria-hidden="true"><use href="#i-book"/></svg></span><h3>קול התורה</h3><p>הפצת תורה וידע יהודי, שמירה על המסורת העשירה והעברתה בגאווה לדורות הבאים.</p></li>
     </ol>
+  </div>
+</section>
+
+<!-- BAND -->
+<section class="band" aria-labelledby="band-verse">
+  <picture class="band-photo"><source type="image/avif" srcset="assets/img/photos/future-class-480.avif 480w, assets/img/photos/future-class-800.avif 800w, assets/img/photos/future-class-1200.avif 1200w" sizes="100vw"><img src="assets/img/photos/future-class-800.webp" srcset="assets/img/photos/future-class-480.webp 480w, assets/img/photos/future-class-800.webp 800w, assets/img/photos/future-class-1200.webp 1200w" sizes="100vw" width="1200" height="800" alt="" loading="lazy" decoding="async"></picture>
+  <div class="band-copy">
+    <p class="band-verse" id="band-verse"><span class="split">עוֹלָם חֶסֶד יִבָּנֶה</span></p>
+    <p class="band-src">תהלים פט, ג</p>
+    <a class="btn btn--lg" href="donate/"><svg width="17" height="17" aria-hidden="true"><use href="#i-heart"/></svg>שותפים בבניין</a>
   </div>
 </section>
 
@@ -248,7 +255,7 @@
   <div class="container">
     <header class="cartouche reveal">
       <p class="kicker">מכתבי תודה</p>
-      <h2 class="title" id="testimonials-title">מילים מהלב</h2>
+      <h2 class="title" id="testimonials-title"><span class="split">מילים מהלב</span></h2>
       <p class="lede">מה שמשפחות כותבות לנו</p>
     </header>
     <ul class="letters">
@@ -273,7 +280,7 @@
   <div class="container">
     <header class="cartouche reveal">
       <p class="kicker">נשמח לשמוע מכם</p>
-      <h2 class="title" id="contact-title">צרו קשר</h2>
+      <h2 class="title" id="contact-title"><span class="split">צרו קשר</span></h2>
       <p class="lede">אנחנו כאן בטלפון, בוואטסאפ ובטופס</p>
     </header>
     <div class="contact-grid">

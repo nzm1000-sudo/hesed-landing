@@ -4,8 +4,6 @@ const $ = (s, el = document) => el.querySelector(s);
 const $$ = (s, el = document) => [...el.querySelectorAll(s)];
 const mq = (q) => window.matchMedia(q);
 const MOTION = root.classList.contains('motion');
-const FX = root.classList.contains('fx');
-const MOBILE = mq('(max-width: 767px)').matches || mq('(pointer: coarse)').matches;
 const DESKTOP_SMOOTH = mq('(min-width: 1024px) and (pointer: fine)').matches;
 const clamp01 = (x) => Math.min(1, Math.max(0, x));
 
@@ -138,8 +136,15 @@ $$('input, textarea', form).forEach((f) => f.addEventListener('input', () => f.r
 /* ---------- geometry cache (no per-frame layout reads) ---------- */
 const stage = $('.hero-stage');
 const G = { heroSpan: 1 };
+const sheet = hero.nextElementSibling;
 let dirty = true;
-function measure() { G.heroSpan = Math.max(1, stage.offsetHeight * 0.9); dirty = true; kick(); }
+function measure() {
+  // progress runs from the top of the page until the next section fully covers the photo
+  G.heroSpan = Math.max(1, Math.min(hero.offsetHeight, innerHeight));
+  // a hero taller than the screen sticks only once its bottom is in view
+  hero.style.setProperty('--hero-stick', Math.min(0, innerHeight - hero.offsetHeight) + 'px');
+  dirty = true; kick();
+}
 new ResizeObserver(measure).observe(document.body);
 window.addEventListener('load', measure);
 
@@ -151,7 +156,8 @@ function frame(nowMs) {
   if (y !== lastY || dirty) {
     lastY = y; dirty = false;
     const p = clamp01(y / G.heroSpan);
-    hero.style.setProperty('--hero-p', p.toFixed(3));
+    hero.style.setProperty('--hero-p', p.toFixed(4));
+    if (sheet) sheet.style.setProperty('--hero-p', p.toFixed(4));
     if (heroScene) heroScene.setProgress(p);
   }
   for (const fn of tasks) fn(nowMs);
@@ -170,10 +176,11 @@ if (MOTION) {
     try {
       await loadScript('assets/vendor/gsap.min.js');
       await loadScript('assets/vendor/ScrollTrigger.min.js');
+      await loadScript('assets/vendor/SplitText.min.js');
       if (DESKTOP_SMOOTH) await loadScript('assets/vendor/lenis.min.js');
     } catch (e) { return; }
-    const { gsap, ScrollTrigger } = window;
-    gsap.registerPlugin(ScrollTrigger);
+    const { gsap, ScrollTrigger, SplitText } = window;
+    gsap.registerPlugin(ScrollTrigger, SplitText);
     if (DESKTOP_SMOOTH && window.Lenis) {
       lenis = new window.Lenis({ lerp: 0.1, smoothWheel: true, anchors: { offset: -96 } });
       lenis.on('scroll', ScrollTrigger.update);
@@ -188,31 +195,16 @@ if (MOTION) {
       tl.classList.add('tl--draw');
       gsap.fromTo(tl, { '--draw': 0 }, { '--draw': 1, ease: 'none', scrollTrigger: { trigger: tl, start: 'top 75%', end: 'bottom 60%', scrub: true } });
     }
+    // section titles and the band verse rise word by word from behind a mask
+    document.fonts.ready.then(() => {
+      $$('.split').forEach((el) => {
+        const split = SplitText.create(el, { type: 'words', mask: 'words', wordsClass: 'word' });
+        gsap.from(split.words, { yPercent: 115, duration: 1.1, ease: 'expo.out', stagger: 0.09, scrollTrigger: { trigger: el, start: 'top 88%', once: true } });
+      });
+      ScrollTrigger.refresh();
+    });
+    const band = $('.band');
+    if (band) gsap.fromTo('.band-photo', { yPercent: -7 }, { yPercent: 7, ease: 'none', scrollTrigger: { trigger: band, start: 'top bottom', end: 'bottom top', scrub: true } });
     ScrollTrigger.refresh();
   })();
-}
-
-/* ---------- lazy 3D ---------- */
-if (FX) {
-  let booted = false;
-  const boot = async () => {
-    if (booted) return; booted = true;
-    evs.forEach((ev) => window.removeEventListener(ev, boot));
-    try {
-      const { createHero } = await import('./hero-scene.js');
-      heroScene = createHero($('.hero-canvas'), { mobile: MOBILE, onStop: () => {} });
-      applyTheme();
-      dirty = true; kick();
-      window.__hero = heroScene;
-    } catch (err) {
-      console.warn('3D disabled:', err && err.message);
-      root.classList.remove('fx'); measure();
-    }
-  };
-  const evs = ['pointerdown', 'pointermove', 'keydown', 'wheel', 'touchstart', 'scroll'];
-  evs.forEach((ev) => window.addEventListener(ev, boot, { passive: true }));
-  // boot shortly after load as well, so the first impression already has depth
-  if (new URLSearchParams(location.search).has('boot3d')) boot();
-  else if ('requestIdleCallback' in window) requestIdleCallback(boot, { timeout: 1800 });
-  else setTimeout(boot, 1200);
 }

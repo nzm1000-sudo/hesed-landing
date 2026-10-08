@@ -21,7 +21,7 @@ for (const f of ['environments/RoomEnvironment.js', 'geometries/RoundedBoxGeomet
   fs.copyFileSync(path.join(threeRoot, 'examples', 'jsm', f), out('vendor', 'three', 'addons', path.basename(f)));
 }
 const gsapDir = path.dirname(nm('gsap/dist/gsap.min.js'));
-for (const f of ['gsap.min.js', 'ScrollTrigger.min.js']) fs.copyFileSync(path.join(gsapDir, f), out('vendor', f));
+for (const f of ['gsap.min.js', 'ScrollTrigger.min.js', 'SplitText.min.js']) fs.copyFileSync(path.join(gsapDir, f), out('vendor', f));
 fs.copyFileSync(path.join(path.dirname(nm('lenis')), 'lenis.min.js'), out('vendor', 'lenis.min.js'));
 for (const f of fs.readdirSync(out('vendor'))) if (f.endsWith('.js')) strip(out('vendor', f));
 for (const f of fs.readdirSync(out('vendor', 'three'))) if (f.endsWith('.js')) strip(out('vendor', 'three', f));

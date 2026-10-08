@@ -280,54 +280,108 @@ strong { font-weight: 600; }
 .menu-nav a:hover { color: var(--gold-hi); }
 .menu .orn { margin: 18px auto; }
 
-/* ---------- hero ---------- */
-.hero { position: relative; overflow: clip; color: var(--on-night); background: radial-gradient(90% 70% at 50% 38%, var(--night-3) 0%, var(--night-2) 45%, var(--night) 100%); }
-.hero::after { content: ''; position: absolute; inset: auto 0 0; height: 120px; pointer-events: none; background: linear-gradient(180deg, transparent, rgb(var(--night-rgb) / .6)); }
-.hero-stage { position: relative; min-height: 100svh; display: grid; place-items: center; padding: calc(var(--header-h) + 32px) var(--gutter) 96px; }
-.hero-canvas { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; transition: opacity 1.6s var(--ease); }
-.hero-canvas.is-live { opacity: calc(1 - var(--hero-p, 0) * 1.1); }
-.hero-copy { position: relative; z-index: 1; width: min(100%, 780px); display: grid; justify-items: center; gap: 16px; text-align: center; }
-/* framed title: double gold rule, diamond corners, one light sweep on load */
-.title-frame { position: relative; isolation: isolate; display: grid; justify-items: center; gap: 12px; margin-bottom: 6px; padding: clamp(30px, 4vw, 46px) clamp(26px, 6vw, 76px) clamp(26px, 3.4vw, 40px); background: radial-gradient(closest-side, rgb(var(--night-rgb) / .6), rgb(var(--night-rgb) / .25)); }
-/* the logo's stone colours drift slowly behind the title, like light through a gem */
-/* the mask makes Safari clip the spinning layer to the rounded box */
-.tf-glow { position: absolute; inset: 8px; z-index: -1; overflow: hidden; border-radius: 2px; pointer-events: none; -webkit-mask-image: linear-gradient(#000 0 0); }
-.tf-glow::before { content: ''; position: absolute; inset: -80%; background: conic-gradient(from 0deg, #C8202F, #E0AE22, #22A04F, #2F6FE0, #8A35D6, #C8202F); filter: blur(46px); opacity: .13; animation: glow-turn 48s linear infinite; }
-[data-mode="dark"] .tf-glow::before { opacity: .18; }
-@keyframes glow-turn { to { transform: rotate(1turn); } }
-.title-frame::before, .title-frame::after { content: ''; position: absolute; pointer-events: none; }
-.title-frame::before { inset: 0; border: 1px solid rgb(var(--gold-rgb) / .75); border-radius: 4px; }
-.title-frame::after { inset: 7px; border: 1px solid rgb(var(--gold-rgb) / .32); border-radius: 2px; }
-.tf-corner { position: absolute; width: 11px; height: 11px; rotate: 45deg; background: var(--gold); }
-.tf-corner:nth-of-type(1) { top: -5.5px; inset-inline-start: -5.5px; }
-.tf-corner:nth-of-type(2) { top: -5.5px; inset-inline-end: -5.5px; }
-.tf-corner:nth-of-type(3) { bottom: -5.5px; inset-inline-start: -5.5px; }
-.tf-corner:nth-of-type(4) { bottom: -5.5px; inset-inline-end: -5.5px; }
-.tf-sheen {
-  position: absolute; inset: 0; padding: 1.5px; border-radius: 4px; pointer-events: none; opacity: 0;
-  background: linear-gradient(115deg, transparent 42%, var(--g1) 50%, transparent 58%) 0 0 / 250% 100% no-repeat;
-  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor;
-  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); mask-composite: exclude;
+/* ---------- hero: real photos, a Jerusalem-stone plaque, and the essentials beside it ---------- */
+/* the hero is always a dark photo band, in every palette and mode */
+.hero { --veil: 13 21 35; position: relative; overflow: clip; color: #F5F2EA; background: rgb(var(--veil)); }
+.hero-media { position: absolute; inset: 0; }
+.hero-slide, .hero-slide img { position: absolute; inset: 0; width: 100%; height: 100%; }
+.hero-slide img { object-fit: cover; object-position: 35% 45%; }
+.hero-slide { opacity: 0; }
+.hero-slide:first-child { opacity: 1; }
+/* three photos cross-fade every 8s while slowly drawing back (Ken Burns) */
+.motion .hero-slide { animation: hero-slide 24s linear infinite backwards; }
+.motion .hero-slide:nth-child(1) { animation-delay: -1.6s; }
+.motion .hero-slide:nth-child(2) { animation-delay: 6.4s; }
+.motion .hero-slide:nth-child(3) { animation-delay: 14.4s; }
+@keyframes hero-slide {
+  0% { opacity: 0; transform: scale(1.14); }
+  6% { opacity: 1; }
+  33.3% { opacity: 1; }
+  41% { opacity: 0; transform: scale(1); }
+  100% { opacity: 0; transform: scale(1); }
 }
-.motion .tf-sheen { animation: sheen 2.4s 1.1s var(--ease) both; }
-@keyframes sheen { 0% { opacity: 1; background-position: -5% 0; } 85% { opacity: 1; } 100% { opacity: 0; background-position: 105% 0; } }
-.hero-title { font-family: var(--font-display); font-weight: 500; font-size: clamp(3.2rem, 8.4vw, 6rem); line-height: 1.02; letter-spacing: -.005em; background: linear-gradient(180deg, var(--title-1) 35%, var(--title-2) 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
-.hero-sub { font-family: var(--font-display); font-size: clamp(1.3rem, 2.6vw, 1.8rem); color: var(--on-night); }
-.hero-verse { font-family: var(--font-display); font-size: clamp(1.1rem, 1.9vw, 1.3rem); letter-spacing: .03em; color: var(--gold-hi); }
-.hero-ctas { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; margin-top: 14px; }
+.hero::before { content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background:
+    linear-gradient(to left, rgb(var(--veil) / .94) 0%, rgb(var(--veil) / .82) 36%, rgb(var(--veil) / .3) 66%, rgb(var(--veil) / .08) 100%),
+    linear-gradient(to top, rgb(var(--veil) / .75), transparent 42%); }
+.hero-stage { position: relative; z-index: 2; width: min(1240px, 100% - 2 * var(--gutter)); min-height: 100svh; margin-inline: auto; display: grid; align-items: center; padding: calc(var(--header-h) + 40px) 0 110px; }
+.hero-copy { width: min(100%, 540px); display: grid; justify-items: center; gap: 20px; text-align: center; }
+
+/* the plaque: warm limestone with grain and veins, a chiselled inner rule, letters cut in and gilded */
+.plaque {
+  position: relative; isolation: isolate; overflow: hidden; width: 100%;
+  padding: clamp(28px, 3.4vw, 40px) clamp(20px, 3vw, 40px) clamp(24px, 3vw, 34px); border-radius: 8px;
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .42 0 0 0 0 .33 0 0 0 0 .2 0 0 0 .2 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url%28%23n%29'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='300'%3E%3Cfilter id='v'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.008 .03' numOctaves='4' seed='7'/%3E%3CfeColorMatrix values='0 0 0 0 .55 0 0 0 0 .45 0 0 0 0 .3 0 0 0 .35 -.05'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url%28%23v%29'/%3E%3C/svg%3E") center / cover,
+    radial-gradient(130% 100% at 28% 18%, #F6EEDC 0%, #E8DABE 52%, #D6C29B 100%);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / .75), inset 0 -3px 6px rgb(110 80 30 / .22),
+    0 0 0 1px rgb(160 122 52 / .7), 0 0 0 5px rgb(245 235 210 / .14),
+    0 40px 80px -28px rgb(0 0 0 / .8), 0 14px 28px -14px rgb(0 0 0 / .5);
+}
+.plaque::before { content: ''; position: absolute; inset: 11px; z-index: -1; border-radius: 4px; pointer-events: none; box-shadow: inset 0 1px 0 rgb(120 88 32 / .45), inset 0 -1px 0 rgb(255 255 255 / .7), 0 1px 0 rgb(255 255 255 / .6), 0 -1px 0 rgb(120 88 32 / .35); }
+/* one slow light sweep across the stone */
+.plaque::after { content: ''; position: absolute; inset: 0; pointer-events: none; opacity: 0; background: linear-gradient(110deg, transparent 38%, rgb(255 255 255 / .55) 50%, transparent 62%) 0 0 / 260% 100% no-repeat; mix-blend-mode: soft-light; }
+.motion .plaque::after { animation: plaque-sheen 2.6s 1.2s var(--ease) both; }
+@keyframes plaque-sheen { 0% { opacity: 1; background-position: 120% 0; } 85% { opacity: 1; } 100% { opacity: 0; background-position: -20% 0; } }
+.hero-title {
+  font-family: var(--font-display); font-weight: 500; font-size: clamp(3rem, 7vw, 5.4rem); line-height: 1.05; letter-spacing: -.005em;
+  background: linear-gradient(180deg, #A07A2A 0%, #6B4C12 46%, #8A6820 54%, #553C0C 100%); -webkit-background-clip: text; background-clip: text; color: transparent;
+  filter: drop-shadow(0 1.5px 0 rgb(255 250 236 / .9)) drop-shadow(0 -1px 0 rgb(60 42 10 / .35));
+}
+.hero-sub { margin-top: 8px; font-family: var(--font-display); font-size: clamp(1.25rem, 2.3vw, 1.6rem); color: #4E3B17; text-shadow: 0 1px 0 rgb(255 250 236 / .8); }
+.hero-verse { font-family: var(--font-display); font-size: clamp(1.1rem, 1.8vw, 1.3rem); letter-spacing: .03em; color: #E9CF93; text-shadow: 0 2px 12px rgb(0 0 0 / .5); }
+.hero-lead { font-family: var(--font-display); font-size: clamp(1.15rem, 2vw, 1.4rem); color: #F5F2EA; text-shadow: 0 2px 14px rgb(0 0 0 / .6); }
+.hero-facts { display: grid; grid-template-columns: repeat(3, 1fr); width: 100%; padding-block: 14px; border-block: 1px solid rgb(233 207 147 / .35); }
+.hero-facts li { display: grid; gap: 2px; }
+.hero-facts li + li { border-inline-start: 1px solid rgb(233 207 147 / .3); }
+.hero-facts b { font-family: var(--font-display); font-weight: 500; font-size: clamp(1.6rem, 3vw, 2.1rem); line-height: 1.1; color: #E9CF93; }
+.hero-facts span { font-size: .95rem; color: rgb(245 242 234 / .88); }
+.hero-ctas { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; margin-top: 4px; }
+.hero .btn--line { color: #F5F2EA; box-shadow: inset 0 0 0 1px rgb(233 207 147 / .85); }
+.hero .btn--line:hover { background: rgb(233 207 147 / .14); }
 .motion .hero-copy > * { animation: rise 1.1s var(--ease) both; }
-.motion .hero-copy > :nth-child(2) { animation-delay: .1s; } .motion .hero-copy > :nth-child(3) { animation-delay: .2s; }
-.motion .hero-copy > :nth-child(4) { animation-delay: .3s; } .motion .hero-copy > :nth-child(5) { animation-delay: .4s; }
-.motion .hero-copy > :nth-child(6) { animation-delay: .5s; } .motion .hero-copy > :nth-child(7) { animation-delay: .6s; }
+.motion .hero-copy > :nth-child(2) { animation-delay: .12s; } .motion .hero-copy > :nth-child(3) { animation-delay: .3s; }
+.motion .hero-copy > :nth-child(4) { animation-delay: .42s; } .motion .hero-copy > :nth-child(5) { animation-delay: .54s; }
 @keyframes rise { from { opacity: 0; transform: translateY(18px); } }
-.scroll-cue { position: absolute; z-index: 1; bottom: 26px; left: 50%; translate: -50% 0; width: 1px; height: 54px; background: linear-gradient(180deg, transparent, var(--gold-hi)); opacity: calc(.8 - var(--hero-p, 0) * 3); }
+.scroll-cue { position: absolute; z-index: 2; bottom: 26px; left: 50%; translate: -50% 0; width: 1px; height: 54px; background: linear-gradient(180deg, transparent, #E9CF93); opacity: calc(.8 - var(--hero-p, 0) * 3); }
 .motion .scroll-cue { animation: cue 2.4s ease-in-out infinite; transform-origin: top; }
 @keyframes cue { 0% { transform: scaleY(0); } 50% { transform: scaleY(1); } 100% { transform: scaleY(1); opacity: 0; } }
 @media (max-width: 767px) {
-  .hero-stage { padding-top: calc(var(--header-h) + 28px); padding-bottom: 72px; }
+  .hero::before { background: linear-gradient(to top, rgb(var(--veil) / .96) 0%, rgb(var(--veil) / .86) 48%, rgb(var(--veil) / .35) 78%, rgb(var(--veil) / .25) 100%); }
+  .hero-slide img { object-position: 30% 62%; }
+  .hero-stage { align-items: end; padding: calc(var(--header-h) + 120px) 0 64px; }
+  .hero-copy { width: 100%; gap: 16px; }
   .hero-ctas { width: 100%; }
   .hero-ctas .btn { flex: 1 1 100%; }
+  .scroll-cue { display: none; }
 }
+
+/* ---------- photo band ---------- */
+.band { position: relative; overflow: clip; display: grid; place-items: center; min-height: clamp(460px, 78vh, 760px); color: #F5F2EA; background: #0D1523; text-align: center; }
+.band-photo { position: absolute; inset: -12% 0; }
+.band-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 40%; }
+.band::before { content: ''; position: absolute; inset: 0; z-index: 1; background: radial-gradient(70% 80% at 50% 55%, rgb(13 21 35 / .5), rgb(13 21 35 / .85)); }
+.band-copy { position: relative; z-index: 2; display: grid; justify-items: center; gap: 14px; padding: 80px var(--gutter); }
+.band-verse { font-family: var(--font-display); font-weight: 500; font-size: clamp(2.6rem, 7vw, 5.2rem); line-height: 1.15; color: #F3DFAE; filter: drop-shadow(0 4px 22px rgb(0 0 0 / .55)); }
+.band-src { font-size: .95rem; letter-spacing: .12em; color: rgb(245 242 234 / .8); }
+.band .btn { margin-top: 12px; }
+
+/* ---------- pillar photos ---------- */
+.pillars-grid .pillar { padding-top: 0; overflow: hidden; }
+.pillar::before { z-index: 1; }
+.p-photo { justify-self: stretch; display: block; margin-inline: -22px; aspect-ratio: 3 / 2; overflow: hidden; }
+.p-photo img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s var(--ease); }
+@media (hover: hover) { .pillar:hover .p-photo img { transform: scale(1.07); } }
+.pillar .p-num { position: absolute; top: 14px; inset-inline-start: 18px; z-index: 1; padding: 2px 10px; border-radius: 999px; background: rgb(13 21 35 / .55); color: #F3DFAE; -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); }
+.pillar .medal { position: relative; margin-top: -40px; }
+
+/* ---------- section titles: rules draw in from the title, words rise one by one ---------- */
+.motion .cartouche .title::before, .motion .cartouche .title::after { transform: scaleX(0); transition: transform 1.4s .25s var(--ease); }
+.motion .cartouche .title::before { transform-origin: left center; }
+.motion .cartouche .title::after { transform-origin: right center; }
+.motion .cartouche.is-in .title::before, .motion .cartouche.is-in .title::after { transform: none; }
 
 /* ---------- cards ---------- */
 .card { position: relative; background: var(--paper); border-radius: var(--radius); border: 1px solid rgb(var(--gold-rgb) / .3); box-shadow: var(--lift); }
@@ -490,3 +544,51 @@ strong { font-weight: 600; }
 .motion .reveal.is-in { opacity: 1; transform: none; }
 
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition-duration: .01ms !important; } }
+
+/* ---------- hero → about: a cross-fade. The about section rises in pale and firms up to its natural look,
+   while the photo does the opposite and pales away, so the two meet halfway with no seam ---------- */
+/* eased: the photo holds its strength while the next section is still low, and pales only near the end */
+.hero { position: sticky; top: var(--hero-stick, 0px); z-index: 0; opacity: calc(1 - var(--hero-p, 0) * var(--hero-p, 0)); }
+.hero ~ * { position: relative; z-index: 1; }
+.hero ~ .section:not(.section--night) { background-color: var(--sec-bg); }
+.hero + .section { margin-top: -48px; border-radius: 48px 48px 0 0; opacity: calc(.18 + var(--hero-p, 0) * .82); }
+.hero + .section::before { border-radius: inherit; }
+/* the hero words leave a little ahead of the photo, so they never show through the incoming text */
+.hero-stage { opacity: calc(1 - var(--hero-p, 0) * var(--hero-p, 0) * 3); }
+@media (max-width: 767px) { .hero + .section { margin-top: -30px; border-radius: 30px 30px 0 0; } }
+
+/* ---------- living plaque: a halo that breathes behind the stone, a light that wanders across it,
+   a glint that runs through the gilded letters, and four twinkling rosettes in the corners ---------- */
+.plaque-wrap { position: relative; isolation: isolate; width: 100%; }
+.plaque-halo { position: absolute; inset: -22% -12%; z-index: -1; pointer-events: none; border-radius: 50%; background: radial-gradient(closest-side, rgb(246 214 146 / .55), rgb(246 214 146 / .32) 62%, transparent 88%); filter: blur(18px); opacity: .6; }
+.motion .plaque-halo { animation: halo-breathe 6.5s ease-in-out infinite; }
+@keyframes halo-breathe { 0%, 100% { opacity: .4; transform: scale(.96); } 50% { opacity: .9; transform: scale(1.04); } }
+.plaque-light { position: absolute; z-index: 1; top: -55%; left: -35%; width: 75%; aspect-ratio: 1; border-radius: 50%; pointer-events: none; background: radial-gradient(closest-side, rgb(255 249 230 / .8), rgb(255 240 205 / .28) 50%, transparent 72%); mix-blend-mode: soft-light; }
+.motion .plaque-light { animation: light-drift 18s ease-in-out infinite alternate; }
+@keyframes light-drift { 0% { transform: translate(0, 0); } 35% { transform: translate(70%, 70%); } 70% { transform: translate(120%, 15%); } 100% { transform: translate(150%, 60%); } }
+.hero-title { background:
+    linear-gradient(105deg, transparent 42%, rgb(255 238 184 / .95) 50%, transparent 58%) 170% 0 / 260% 100% no-repeat,
+    linear-gradient(180deg, #A07A2A 0%, #6B4C12 46%, #8A6820 54%, #553C0C 100%);
+  -webkit-background-clip: text; background-clip: text; }
+/* a slow, unhurried glint: about nine seconds to cross, then a long rest */
+.motion .hero-title { animation: letter-glint 18s 2.6s ease-in-out infinite; }
+@keyframes letter-glint { 0% { background-position: 170% 0, 0 0; } 50%, 100% { background-position: -70% 0, 0 0; } }
+.pq-orn { position: absolute; z-index: 1; width: 20px; height: 20px; pointer-events: none;
+  background: radial-gradient(circle at 38% 32%, rgb(255 255 255 / .9), rgb(255 255 255 / 0) 42%), #C4A6E6;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 0l2.3 7.2L19.6 2l-2.4 7L24 12l-6.8 3 2.4 7-5.3-5.2L12 24l-2.3-7.2L4.4 22l2.4-7L0 12l6.8-3-2.4-7 5.3 5.2z'/%3E%3C/svg%3E") center / contain no-repeat; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 0l2.3 7.2L19.6 2l-2.4 7L24 12l-6.8 3 2.4 7-5.3-5.2L12 24l-2.3-7.2L4.4 22l2.4-7L0 12l6.8-3-2.4-7 5.3 5.2z'/%3E%3C/svg%3E") center / contain no-repeat;
+  filter: drop-shadow(0 0 4px rgb(196 166 230 / .95)); }
+.pq-orn:nth-of-type(1) { top: 1px; left: 1px; } .pq-orn:nth-of-type(2) { top: 1px; right: 1px; }
+.pq-orn:nth-of-type(3) { bottom: 1px; left: 1px; } .pq-orn:nth-of-type(4) { bottom: 1px; right: 1px; }
+/* each rosette glows like a gem, drifting slowly through violet, rose and green, each a step behind the last */
+.motion .pq-orn { animation: twinkle 4.2s ease-in-out infinite, gem 18s ease-in-out infinite; }
+.motion .pq-orn:nth-of-type(2) { animation-delay: 1.05s, -4.5s; } .motion .pq-orn:nth-of-type(3) { animation-delay: 3.15s, -9s; } .motion .pq-orn:nth-of-type(4) { animation-delay: 2.1s, -13.5s; }
+@keyframes gem {
+  0%, 100% { background-color: #C4A6E6; filter: drop-shadow(0 0 4px rgb(196 166 230 / .95)); }
+  33% { background-color: #E6A0AE; filter: drop-shadow(0 0 4px rgb(230 160 174 / .95)); }
+  66% { background-color: #8FD8B0; filter: drop-shadow(0 0 4px rgb(143 216 176 / .95)); }
+}
+@keyframes twinkle { 0%, 100% { opacity: .55; transform: scale(.82) rotate(0deg); } 50% { opacity: 1; transform: scale(1.12) rotate(45deg); } }
+.plaque-kicker { display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 6px; font-family: var(--font-display); font-size: clamp(.95rem, 1.4vw, 1.12rem); letter-spacing: .3em; color: #6B4C12; text-shadow: 0 1px 0 rgb(255 250 236 / .85); }
+.plaque-kicker::before, .plaque-kicker::after { content: ''; width: 38px; height: 1px; }
+.plaque-kicker::before { background: linear-gradient(to right, transparent, #8E6B24); }
+.plaque-kicker::after { background: linear-gradient(to left, transparent, #8E6B24); }
