@@ -350,4 +350,8 @@ function showThanks(s, v) {
 }
 
 if (params.has('thanks')) showThanks(null, {});
+// links from partner pages (e.g. כזוהר הרקיע) preselect a purpose and a standing-order length
+const preCat = $$('input[name="cat"]', form).find((i) => i.value === params.get('cat'));
+if (preCat) preCat.checked = true;
+if ([...form.elements.months.options].some((o) => o.value === params.get('months'))) form.elements.months.value = params.get('months');
 render();
