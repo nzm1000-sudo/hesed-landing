@@ -355,6 +355,23 @@ if (params.has('thanks')) showThanks(null, {});
 const preCat = $$('input[name="cat"]', form).find((i) => i.value === params.get('cat'));
 if (preCat) preCat.checked = true;
 if ([...form.elements.months.options].some((o) => o.value === params.get('months'))) form.elements.months.value = params.get('months');
+// donor details from partner forms come after '#', so they never reach any server log; cleared from the address bar once read
+const handoff = new URLSearchParams(location.hash.slice(1));
+if ([...handoff.keys()].length) {
+  const put = (name, v) => { const f = form.elements[name]; if (f && v) f.value = String(v).trim().slice(0, f.maxLength > 0 ? f.maxLength : 300); };
+  const amt = handoff.get('amount');
+  if (/^\d{1,7}$/.test(amt || '') && Number(amt) >= 5 && $('input[name="cat"]:checked', form).dataset.kind === 'free') {
+    el.amount.value = amt;
+    $$('input[name="chip"]', form).forEach((c) => { c.checked = false; });
+  }
+  const [first, ...rest] = (handoff.get('name') || '').trim().split(/\s+/);
+  put('first', first);
+  put('last', rest.join(' '));
+  put('phone', handoff.get('phone'));
+  put('mail', handoff.get('mail'));
+  put('comment', handoff.get('comment'));
+  history.replaceState(null, '', location.pathname + location.search);
+}
 render();
 if (preCat && !params.has('thanks')) {
   const goToChosen = () => $('[data-amount-step]').scrollIntoView({ block: 'start', behavior: 'instant' });
