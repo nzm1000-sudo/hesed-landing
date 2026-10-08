@@ -36,16 +36,12 @@ const fonts = [
 for (const [pkg, f] of fonts) fs.copyFileSync(fsrc(pkg, f), out('fonts', f));
 
 (async () => {
-  // icons
-  const emblem = out('img', 'emblem.svg');
-  fs.copyFileSync(emblem, path.join(ROOT, 'favicon.svg'));
-  const pad = (size, inner) => sharp(emblem, { density: 600 }).resize({ height: inner, fit: 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } })
-    .png().toBuffer().then((b) => sharp({ create: { width: size, height: size, channels: 4, background: { r: 0, g: 0, b: 0, alpha: 0 } } })
-      .composite([{ input: b, gravity: 'center' }]).png().toFile(path.join(ROOT, size === 32 ? 'favicon-32.png' : 'apple-touch-icon.png')));
-  await pad(32, 32);
-  // apple-touch-icon on a soft pearl background (iOS does not keep transparency)
-  const b = await sharp(emblem, { density: 600 }).resize({ height: 140 }).png().toBuffer();
-  await sharp({ create: { width: 180, height: 180, channels: 4, background: '#F1EEFB' } }).composite([{ input: b, gravity: 'center' }]).png().toFile(path.join(ROOT, 'apple-touch-icon.png'));
+  // icons: the stone plaque cut from the original logo (assets/img/mark.png)
+  const mark = out('img', 'mark.png');
+  const fit = (box) => sharp(mark).resize({ width: box, height: box, fit: 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } }).png().toBuffer();
+  await sharp(await fit(32)).toFile(path.join(ROOT, 'favicon-32.png'));
+  // apple-touch-icon on ivory (iOS does not keep transparency)
+  await sharp({ create: { width: 180, height: 180, channels: 4, background: '#F8F6F0' } }).composite([{ input: await fit(136), gravity: 'center' }]).png().toFile(path.join(ROOT, 'apple-touch-icon.png'));
 
   const SRC = process.argv[2];
   if (!SRC) return console.log('vendor/fonts/icons done (no photo folder given)');
