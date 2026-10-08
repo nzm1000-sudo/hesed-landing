@@ -73,8 +73,9 @@ async function loadExtraCategories() {
     grid.append(label);
   }
   if (grid.children.length) $('[data-extra-cats]').hidden = false;
+  return grid.children.length > 0;
 }
-loadExtraCategories();
+const extras = loadExtraCategories();
 
 /* ---------- state ---------- */
 function current() {
@@ -355,3 +356,9 @@ const preCat = $$('input[name="cat"]', form).find((i) => i.value === params.get(
 if (preCat) preCat.checked = true;
 if ([...form.elements.months.options].some((o) => o.value === params.get('months'))) form.elements.months.value = params.get('months');
 render();
+if (preCat && !params.has('thanks')) {
+  const goToChosen = () => $('[data-amount-step]').scrollIntoView({ block: 'start', behavior: 'instant' });
+  goToChosen();
+  // purposes loaded from Nedarim are inserted above the chosen one and would push it down
+  extras.then((added) => { if (added) goToChosen(); });
+}
