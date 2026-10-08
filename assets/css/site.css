@@ -423,7 +423,10 @@ strong { font-weight: 600; }
 .c-card { display: flex; align-items: center; gap: 16px; padding: 20px 22px; text-decoration: none; }
 .c-label { display: block; font-size: .85rem; color: var(--ink-3); }
 .c-val { display: block; font-weight: 600; }
+.c-card [dir="ltr"] { text-align: right; }
 .c-card--wa { justify-content: space-between; }
+.foot-wa { display: inline-flex; align-items: center; gap: 6px; }
+.foot-wa svg { color: var(--gold-hi); }
 @media (max-width: 899px) { .contact-grid { grid-template-columns: 1fr; } }
 
 /* ---------- footer ---------- */

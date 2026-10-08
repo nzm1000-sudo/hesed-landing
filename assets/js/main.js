@@ -127,7 +127,7 @@ form.addEventListener('submit', (e) => {
   const lines = ['שם מלא: ' + name.value.trim(), 'טלפון: ' + phone.value.trim()];
   if (form.elements.subject.value) lines.push('נושא: ' + form.elements.subject.value);
   if (form.elements.message.value.trim()) lines.push('הודעה: ' + form.elements.message.value.trim());
-  window.open('https://wa.me/9720585555530?text=' + encodeURIComponent(lines.join('\n')), '_blank', 'noopener');
+  window.open('https://wa.me/972535472113?text=' + encodeURIComponent(lines.join('\n')), '_blank', 'noopener');
   const btn = $('[data-submit]', form), status = $('[data-status]', form);
   btn.textContent = status.textContent = 'ההודעה נשלחה ✓';
   btn.classList.add('is-sent');
