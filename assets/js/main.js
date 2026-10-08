@@ -213,7 +213,6 @@ if (FX) {
   };
   const evs = ['pointerdown', 'pointermove', 'keydown', 'wheel', 'touchstart', 'scroll'];
   evs.forEach((ev) => window.addEventListener(ev, boot, { passive: true }));
-  const later = () => setTimeout(() => (window.requestIdleCallback || ((f) => f()))(boot, { timeout: 1500 }), 2500);
-  if (document.readyState === 'complete') later(); else window.addEventListener('load', later);
+  // the 3D boots on the first interaction (scroll, touch, pointer, key); until then the hero is pure HTML
   if (new URLSearchParams(location.search).has('boot3d')) boot();
 }

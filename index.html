@@ -31,7 +31,15 @@
     var sd = navigator.connection && navigator.connection.saveData;
     var q = location.search;
     var gl = false;
-    try { var c = document.createElement('canvas'); gl = !!(c.getContext('webgl2') || c.getContext('webgl')); } catch (e) {}
+    try {
+      var c = document.createElement('canvas'), x = c.getContext('webgl2') || c.getContext('webgl');
+      if (x) {
+        var ri = x.getExtension('WEBGL_debug_renderer_info');
+        var rn = ri ? String(x.getParameter(ri.UNMASKED_RENDERER_WEBGL)) : '';
+        gl = !/swiftshader|llvmpipe|software|basic render/i.test(rn) || /[?&]boot3d/.test(q);
+        var lc = x.getExtension('WEBGL_lose_context'); if (lc) lc.loseContext();
+      }
+    } catch (e) {}
     d.classList.add('js');
     if (!rm) d.classList.add('motion');
     if (!rm && !sd && gl && !/[?&]no3d/.test(q)) d.classList.add('fx');
@@ -456,12 +464,14 @@
 </footer>
 
 <!-- floating: palette switcher + WhatsApp -->
+<aside class="floating" aria-label="פלטת צבעים ו-WhatsApp">
 <div class="palette glass" role="radiogroup" aria-label="פלטת צבעים" data-palette-switch>
   <button type="button" role="radio" class="swatch sw-lavender" data-set-palette="lavender" aria-checked="true" title="ערפל לבנדר"><span class="sr-only">ערפל לבנדר</span></button>
   <button type="button" role="radio" class="swatch sw-mint" data-set-palette="mint" aria-checked="false" title="מנטה וים"><span class="sr-only">מנטה וים</span></button>
   <button type="button" role="radio" class="swatch sw-peach" data-set-palette="peach" aria-checked="false" title="אפרסק ורד"><span class="sr-only">אפרסק ורד</span></button>
 </div>
 <a class="fab-wa" href="https://wa.me/9720585555530" target="_blank" rel="noopener noreferrer"><svg width="26" height="26" aria-hidden="true"><use href="#i-wa"/></svg><span class="sr-only">WhatsApp</span></a>
+</aside>
 
 </body>
 </html>
