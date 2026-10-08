@@ -1,0 +1,125 @@
+/* חסד יסובבנו — donation page. Builds on site.css tokens; every surface works in all 3 palettes × light/dark */
+
+[hidden] { display: none !important; }
+
+.give-page { background: var(--ivory); }
+.give-page::before {
+  content: ''; position: fixed; inset: 0; z-index: -1; pointer-events: none; opacity: .5;
+  background-image: radial-gradient(circle at 1px 1px, rgb(var(--gold-rgb) / .22) 1px, transparent 1.4px);
+  background-size: 28px 28px;
+}
+
+/* ---------- header ---------- */
+.give-header { background: rgb(var(--night-rgb) / .9); }
+.give-brand { grid-column: 2; display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font-family: var(--font-display); font-size: 1.3rem; color: var(--on-night); }
+.give-brand img { width: 28px; height: auto; }
+.head-wa { grid-column: 3; justify-self: end; width: 42px; height: 42px; }
+@media (max-width: 400px) { .give-brand span { display: none; } }
+
+/* ---------- layout ---------- */
+.give-main { width: min(760px, 100% - 2 * var(--gutter)); margin-inline: auto; padding: calc(var(--header-h) + clamp(28px, 5vw, 56px)) 0 48px; }
+.give-intro { display: grid; justify-items: center; gap: 10px; margin-bottom: clamp(24px, 4vw, 40px); text-align: center; }
+.give-intro .lede { max-width: 44ch; }
+.give-test { margin: 0 0 20px; padding: 10px 18px; border-radius: 12px; border: 1px dashed var(--danger); color: var(--danger); font-weight: 600; text-align: center; }
+.give-form { display: grid; gap: 20px; }
+
+/* ---------- steps ---------- */
+.give-step { min-width: 0; padding: clamp(24px, 4vw, 36px); border: 1px solid rgb(var(--gold-rgb) / .3); }
+.step-title { float: inline-start; width: 100%; display: flex; align-items: center; gap: 12px; margin-bottom: 20px; padding: 0; font-family: var(--font-display); font-weight: 500; font-size: clamp(1.35rem, 2.6vw, 1.6rem); line-height: 1.2; color: var(--ink); }
+.step-title + * { clear: both; }
+.step-num { display: inline-grid; place-items: center; flex: none; width: 34px; height: 34px; border-radius: 50%; font-family: var(--font-body); font-weight: 600; font-size: 1rem; color: var(--on-gold); background: var(--gold-grad); box-shadow: inset 0 1px 0 rgb(255 255 255 / .5); }
+
+/* ---------- purpose cards ---------- */
+.cat-group { display: grid; gap: 12px; }
+.cat-group--grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+@media (max-width: 619px) {
+  .cat-group--grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .cat-group--grid .cat-body { padding: 14px 14px 14px 34px; }
+  .cat-group--grid .cat-body::after { top: 14px; inset-inline-end: 12px; }
+  .cat-group--grid .cat-name { font-size: 1rem; }
+}
+.cat-head { margin: 26px 0 12px; font-weight: 600; font-size: .95rem; letter-spacing: .04em; color: var(--gold-ink); }
+.cat, .chip, .freq-opt { position: relative; display: block; cursor: pointer; }
+.cat input, .chip input, .freq-opt input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; }
+.cat-body { display: grid; gap: 4px; height: 100%; padding: 16px 18px 16px 44px; border-radius: 16px; border: 1px solid rgb(var(--gold-rgb) / .35); background: var(--field-bg); transition: border-color .2s, background-color .2s, box-shadow .2s; }
+.cat-body::after { content: ''; position: absolute; top: 16px; inset-inline-end: 16px; width: 18px; height: 18px; border-radius: 50%; border: 1.5px solid var(--field-border); transition: border-color .2s, box-shadow .2s, background-color .2s; }
+.cat-name { font-weight: 600; line-height: 1.35; color: var(--ink); }
+.cat-note { font-size: .95rem; line-height: 1.45; color: var(--ink-2); }
+.cat-price { font-family: var(--font-display); font-size: 1.3rem; line-height: 1.2; color: var(--gold-ink); }
+.cat-price small { font-family: var(--font-body); font-size: .85rem; color: var(--ink-2); }
+@media (hover: hover) { .cat:hover .cat-body { border-color: var(--gold-lo); } }
+.cat input:checked + .cat-body { border-color: var(--gold); background: rgb(var(--gold-rgb) / .1); box-shadow: 0 0 0 1px var(--gold), 0 14px 30px -20px rgb(var(--gold-rgb) / .8); }
+.cat input:checked + .cat-body::after { border-color: var(--gold); background: var(--gold); box-shadow: inset 0 0 0 3px var(--paper); }
+.cat input:focus-visible + .cat-body, .chip input:focus-visible + span, .freq-opt input:focus-visible + span { outline: 2px solid var(--focus); outline-offset: 3px; }
+.cat-aside { margin-top: 18px; font-size: .95rem; color: var(--ink-2); }
+.cat-aside a { color: var(--gold-ink); font-weight: 600; text-underline-offset: 3px; }
+
+/* ---------- frequency + amount ---------- */
+.freq { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; padding: 4px; margin-bottom: 18px; border-radius: 999px; background: var(--field-bg); box-shadow: inset 0 0 0 1px var(--field-border); }
+.freq-opt span { display: grid; place-items: center; min-height: 46px; padding: 8px 12px; border-radius: 999px; font-weight: 600; text-align: center; color: var(--ink-2); transition: background-color .25s, color .25s, box-shadow .25s; }
+.freq-opt input:checked + span { color: var(--on-gold); background: var(--gold-grad); box-shadow: inset 0 1px 0 rgb(255 255 255 / .5), 0 8px 18px -10px rgb(var(--gold-rgb) / .9); }
+.freq[aria-disabled="true"] { opacity: .55; }
+.freq[aria-disabled="true"] .freq-opt, .freq[aria-disabled="true"] input { cursor: not-allowed; }
+
+.chips { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 16px; }
+.chip span { display: grid; place-items: center; min-height: 52px; border-radius: 14px; border: 1px solid rgb(var(--gold-rgb) / .4); background: var(--field-bg); font-family: var(--font-display); font-size: 1.2rem; color: var(--ink); transition: border-color .2s, background-color .2s, box-shadow .2s; }
+@media (hover: hover) { .chip:hover span { border-color: var(--gold-lo); } }
+.chip input:checked + span { border-color: var(--gold); background: rgb(var(--gold-rgb) / .14); box-shadow: 0 0 0 1px var(--gold); color: var(--gold-ink); }
+@media (min-width: 620px) { .chips { grid-template-columns: repeat(6, 1fr); } }
+
+.amount-wrap { position: relative; }
+.amount-wrap input { padding-inline-end: 44px; font-size: 1.2rem; }
+.amount-cur { position: absolute; top: 50%; inset-inline-end: 18px; translate: 0 -50%; color: var(--ink-3); pointer-events: none; }
+.fixed-amount { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 18px 20px; margin-bottom: 16px; border-radius: 16px; background: rgb(var(--gold-rgb) / .1); box-shadow: inset 0 0 0 1px rgb(var(--gold-rgb) / .4); }
+.fixed-label { font-weight: 600; color: var(--ink-2); }
+.fixed-sum { font-family: var(--font-display); font-size: 1.6rem; line-height: 1.1; color: var(--gold-ink); }
+
+.row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.row-2:has(> [hidden]) { grid-template-columns: 1fr; }
+@media (max-width: 560px) { .row-2 { grid-template-columns: 1fr; } }
+.give-step > .field + .field, .give-step > .row-2 + .field, .give-step > .field + .row-2, .give-step > .row-2 + .row-2 { margin-top: 16px; }
+.field .opt { font-weight: 400; font-size: .85rem; color: var(--ink-3); }
+.field-err { min-height: 0; font-size: .92rem; font-weight: 600; color: var(--danger); }
+.field-err:empty { display: none; }
+.field [dir="ltr"]::placeholder { text-align: right; }
+.field input[dir="ltr"] { text-align: right; }
+.field input[dir="ltr"]:not(:placeholder-shown) { text-align: left; }
+
+/* ---------- payment ---------- */
+/* the card fields come from Nedarim's iframe, which has its own light styling, so it always sits on a light slip */
+.card-slip { position: relative; padding: 6px 20px 4px; border-radius: 18px; background: #FFFEFB; box-shadow: 0 0 0 1px rgb(var(--gold-rgb) / .55), 0 0 0 5px var(--paper), 0 0 0 6px rgb(var(--gold-rgb) / .25); }
+.card-slip iframe { display: block; width: 100%; height: 0; border: 0; color-scheme: light; transition: height .3s var(--ease); }
+.slip-loading { padding: 26px 0; text-align: center; font-size: .95rem; color: #5B6779; }
+.field-err--card { margin-top: 10px; }
+.card-slip--fallback { padding: 22px; text-align: center; color: #1E2A3B; }
+
+.summary { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; margin: 24px 0 16px; padding-top: 18px; border-top: 1px solid rgb(var(--gold-rgb) / .3); }
+.summary-label { font-weight: 600; color: var(--ink-2); }
+.summary-sum { font-family: var(--font-display); font-size: clamp(1.5rem, 3.4vw, 1.9rem); line-height: 1.15; color: var(--ink); text-align: end; }
+.give-submit { white-space: normal; }
+.give-submit[aria-busy="true"] { cursor: progress; opacity: .85; }
+.give-submit[aria-busy="true"] svg { display: none; }
+.give-submit[aria-busy="true"]::before { content: ''; width: 18px; height: 18px; border-radius: 50%; border: 2px solid currentColor; border-inline-end-color: transparent; animation: spin .8s linear infinite; }
+@keyframes spin { to { transform: rotate(1turn); } }
+.form-alert { margin-top: 14px; padding: 12px 16px; border-radius: 12px; font-weight: 600; color: var(--danger); background: rgb(179 38 58 / .08); box-shadow: inset 0 0 0 1px var(--danger); }
+.form-alert:empty { display: none; }
+.secure-note { display: flex; align-items: flex-start; justify-content: center; gap: 8px; margin-top: 16px; font-size: .92rem; line-height: 1.5; color: var(--ink-2); text-align: center; }
+.secure-note svg { flex: none; margin-top: 3px; color: var(--gold-lo); }
+.alt-pay { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 10px; margin-top: 10px; font-size: .95rem; color: var(--ink-2); }
+.alt-pay a { color: var(--gold-ink); font-weight: 600; text-underline-offset: 3px; }
+
+/* ---------- thanks ---------- */
+.give-thanks { display: grid; justify-items: center; gap: 14px; padding: clamp(40px, 6vw, 64px) clamp(24px, 5vw, 56px); text-align: center; }
+.give-thanks:focus { outline: none; }
+.give-thanks .medal svg { color: var(--ok); }
+.thanks-sum { font-family: var(--font-display); font-size: clamp(1.3rem, 2.6vw, 1.6rem); line-height: 1.5; color: var(--ink); }
+.thanks-meta { font-size: .95rem; color: var(--ink-2); }
+.thanks-meta:empty { display: none; }
+.thanks-receipt { display: inline-flex; align-items: center; gap: 8px; color: var(--ink-2); }
+.thanks-receipt svg { color: var(--gold-lo); }
+.thanks-verse { margin-top: 6px; font-family: var(--font-display); color: var(--gold-ink); font-size: 1.15rem; }
+.thanks-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 10px; }
+
+/* ---------- footer ---------- */
+.give-foot { padding: 28px var(--gutter) max(28px, env(safe-area-inset-bottom)); text-align: center; font-size: .92rem; color: var(--ink-3); }
+.give-foot a { color: inherit; }
