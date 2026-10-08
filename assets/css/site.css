@@ -586,6 +586,15 @@ a.f-line:hover { color: var(--accent-2); }
 .sw-lavender::before { background: conic-gradient(from 200deg, #C8B6F2, #A9BCF5, #F2CFE6, #C8B6F2); }
 .sw-mint::before { background: conic-gradient(from 200deg, #A6E3CF, #9CD6E4, #D3F0DC, #A6E3CF); }
 .sw-peach::before { background: conic-gradient(from 200deg, #FFC9A6, #F4BFCD, #F9E3A3, #FFC9A6); }
+.palette, .fab-wa { transition: opacity .35s var(--ease), transform .35s var(--ease); }
+@media (max-width: 700px) {
+  .palette { padding: 2px; gap: 0; }
+  .swatch { width: 34px; height: 34px; }
+  .swatch::before { width: 20px; height: 20px; }
+  .swatch[aria-checked="true"]::after { inset: 4px; }
+  .fab-wa { width: 46px; height: 46px; }
+  html.ui-hidden .palette, html.ui-hidden .fab-wa { opacity: 0; transform: translateY(14px); pointer-events: none; }
+}
 .fab-wa {
   position: fixed; z-index: 40;
   bottom: max(16px, env(safe-area-inset-bottom));

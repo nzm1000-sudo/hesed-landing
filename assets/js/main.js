@@ -36,6 +36,19 @@ sw.forEach((b, i) => {
 });
 function syncSwatchTabs() { sw.forEach((b) => b.tabIndex = b.getAttribute('aria-checked') === 'true' ? 0 : -1); }
 syncSwatchTabs();
+// phones: floating controls step aside while reading (scroll down), return on scroll up / near the ends
+{
+  let lastY = scrollY, ticking = false;
+  const onScroll = () => {
+    ticking = false;
+    const y = scrollY, max = document.documentElement.scrollHeight - innerHeight;
+    const hide = y > lastY + 4 && y > 200 && y < max - 200;
+    const show = y < lastY - 4 || y <= 200 || y >= max - 200;
+    if (hide) root.classList.add('ui-hidden'); else if (show) root.classList.remove('ui-hidden');
+    lastY = y;
+  };
+  addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
+}
 sw.forEach((b) => b.addEventListener('click', syncSwatchTabs));
 sw.forEach((b) => b.addEventListener('keyup', syncSwatchTabs));
 
