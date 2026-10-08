@@ -127,7 +127,7 @@ function render() {
   el.payments.hidden = s.freq !== 'once';
   el.months.hidden = s.freq !== 'monthly';
   el.zeoutOpt.textContent = s.freq === 'monthly' ? 'נדרשת להוראת קבע' : 'לקבלה לפי סעיף 46';
-  el.summary.textContent = s.amount ? summaryText(s) : '—';
+  el.summary.textContent = s.amount ? summaryText(s) : 'בחרו סכום';
   el.submitLabel.textContent = !useIframe
     ? 'להמשך לתשלום מאובטח'
     : s.freq === 'monthly' ? 'הצטרפות בהוראת קבע' : (s.amount ? `תרומה של ${fmt(s.amount)} ₪` : 'לתרומה');
@@ -164,10 +164,10 @@ function validate(s, { donor = true } = {}) {
   const bad = [];
   const fail = (name, msg) => { setErr(name, msg); bad.push(form.elements[name]); };
   if (s.kind === 'free' && (!s.amount || s.amount < 5)) fail('amount', 'נא לבחור או להזין סכום (לפחות 5 ₪)');
-  else if (s.kind === 'free' && s.amount > 1000000) fail('amount', 'הסכום גבוה מדי — לתרומה גדולה נשמח שתפנו אלינו');
+  else if (s.kind === 'free' && s.amount > 1000000) fail('amount', 'הסכום גבוה מדי. לתרומה גדולה נשמח שתפנו אלינו');
   if (s.freq === 'once' && s.payments > 1 && s.amount / s.payments < 5) fail('amount', 'כל תשלום צריך להיות לפחות 5 ₪');
   if (s.kind === 'perName' && !s.names.length) fail('names', 'נא לרשום לפחות שם אחד');
-  if (s.kind === 'perName' && comment(s).length > 300) fail('names', 'רשימת השמות ארוכה מדי לתרומה אחת — חלקו לשתי תרומות או שלחו לנו בוואטסאפ');
+  if (s.kind === 'perName' && comment(s).length > 300) fail('names', 'רשימת השמות ארוכה מדי לתרומה אחת. חלקו לשתי תרומות או שלחו לנו בוואטסאפ');
   if (donor) {
     const f = form.elements;
     if (!f.first.value.trim()) fail('first', 'נא למלא שם פרטי');
@@ -178,7 +178,7 @@ function validate(s, { donor = true } = {}) {
     if (mail && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mail)) fail('mail', 'כתובת הדוא״ל אינה תקינה');
     const z = f.zeout.value.trim();
     if (s.freq === 'monthly' && !z) fail('zeout', 'להוראת קבע נדרש מספר תעודת זהות');
-    else if (z && (!/^\d{5,9}$/.test(z))) fail('zeout', 'מספר זהות — ספרות בלבד, עד 9');
+    else if (z && (!/^\d{5,9}$/.test(z))) fail('zeout', 'מספר זהות: ספרות בלבד, עד 9');
   }
   return bad[0] || null;
 }
@@ -280,7 +280,7 @@ function onValidate(d) {
     return;
   }
   const name = CARD_FIELD[d.Field] || 'פרטי הכרטיס';
-  el.cardErr.textContent = d.ErrorType === 'Empty' ? `נא למלא את ${name}` : `${name} — הערך אינו תקין`;
+  el.cardErr.textContent = d.ErrorType === 'Empty' ? `נא למלא את ${name}` : `${name}: הערך אינו תקין`;
   pending = null;
   setBusy(false);
   el.slip.scrollIntoView({ block: 'center', behavior: 'smooth' });
@@ -309,7 +309,7 @@ function payload(s) {
 const NEDARIM_CODES = {
   'NEED ZEOUT': ['zeout', 'נדרש מספר תעודת זהות של בעל הכרטיס'],
   'NEED CAPTCHA': [null, 'נא לסמן "אני לא רובוט" בטופס התשלום וללחוץ שוב'],
-  'CAPTCHA ERROR': [null, 'אימות "אני לא רובוט" נכשל — נא לסמן שוב וללחוץ שוב'],
+  'CAPTCHA ERROR': [null, 'אימות "אני לא רובוט" נכשל. נא לסמן שוב וללחוץ שוב'],
 };
 
 function onResult(v) {
@@ -322,7 +322,7 @@ function onResult(v) {
   const raw = String(v.Message || v.BackMessage || '').trim();
   const [field, text] = NEDARIM_CODES[raw.toUpperCase()] || [null, raw || 'התרומה לא בוצעה'];
   if (field) { setErr(field, text); form.elements[field].focus(); }
-  showAlert(`${text.replace(/[.\s]+$/, '')}. לא בוצע חיוב — אפשר לתקן ולנסות שוב.`);
+  showAlert(`${text.replace(/[.\s]+$/, '')}. לא בוצע חיוב, אפשר לתקן ולנסות שוב.`);
 }
 
 /* ---------- thanks ---------- */
