@@ -179,7 +179,7 @@ export function createHero(canvas, { mobile = false, palette = 'lavender', onSto
     const tan = Math.tan(THREE.MathUtils.degToRad(camera.fov / 2));
     L.portrait = camera.aspect < 0.9;
     // emblem ≈ 48% of the height, never wider than 62% of the width
-    const vhNeeded = Math.max(FH / 0.48, FW / (0.62 * camera.aspect));
+    const vhNeeded = Math.max(FH / 0.48, FW / ((L.portrait ? 0.7 : 0.62) * camera.aspect));
     const D = vhNeeded / (2 * tan);
     camera.position.set(0, 0, D);
     camera.lookAt(0, 0, 0);
@@ -251,9 +251,8 @@ export function createHero(canvas, { mobile = false, palette = 'lavender', onSto
       const phi = t * 0.22 + 2.2;
       const s = (L.portrait ? 0.8 : 1) * (0.2 + 0.8 * o);
       orb.scale.setScalar(s);
-      // front half of the orbit dips beneath the emblem; back half passes behind the glass
-      const sz = Math.sin(phi);
-      orb.position.set(Math.cos(phi) * L.orbR, -Math.max(0, sz) * (FH * 0.5 + 0.9) + 0.15 * Math.sin(t * 0.5) - (1 - o) * 4, sz * 2.4 - 0.4);
+      // the orb only ever travels behind the emblem, so it is seen through (and refracted by) the glass
+      orb.position.set(Math.cos(phi) * L.orbR, 0.25 * Math.sin(t * 0.5) - (1 - o) * 4, -Math.abs(Math.sin(phi)) * 2.2 - 0.7);
       ring.rotation.z = t * 0.15;
     }
     motes.rotation.y = t * 0.01;
