@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl" data-palette="lavender">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>חסד יסובבנו — הלב הפועם של כולנו</title>
+<meta name="description" content="עמותת חסד יסובבנו — סיוע, חסד ואהבה לקהילות ישראל מאז 2009. תחת הנהגת הרב שלום יוסף ברבי, נתיבות.">
+<meta name="keywords" content="חסד יסובבנו, עמותה, נתיבות, סיוע, צדקה, הרב ברבי">
+<meta name="theme-color" content="#EEEBFA">
+<meta property="og:title" content="חסד יסובבנו — הלב הפועם של כולנו">
+<meta property="og:description" content="עמותה פועלת מאז 2009 לטובת קהילות ישראל בשבעה עמודי תווך">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="he_IL">
+<meta property="og:image" content="og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preload" href="assets/fonts/frank-ruhl-libre-hebrew-500-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/assistant-hebrew-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<script>
+  /* palette + capability flags before first paint */
+  (function () {
+    var d = document.documentElement, p = null;
+    try { p = localStorage.getItem('hy-palette'); } catch (e) {}
+    if (p === 'lavender' || p === 'mint' || p === 'peach') d.setAttribute('data-palette', p);
+    var mm = window.matchMedia;
+    var rm = mm && mm('(prefers-reduced-motion: reduce)').matches;
+    var sd = navigator.connection && navigator.connection.saveData;
+    var q = location.search;
+    var gl = false;
+    try {
+      var c = document.createElement('canvas'), x = c.getContext('webgl2') || c.getContext('webgl');
+      if (x) {
+        var ri = x.getExtension('WEBGL_debug_renderer_info');
+        var rn = ri ? String(x.getParameter(ri.UNMASKED_RENDERER_WEBGL)) : '';
+        gl = !/swiftshader|llvmpipe|software|basic render/i.test(rn) || /[?&]boot3d/.test(q);
+        var lc = x.getExtension('WEBGL_lose_context'); if (lc) lc.loseContext();
+      }
+    } catch (e) {}
+    d.classList.add('js');
+    if (!rm) d.classList.add('motion');
+    if (!rm && !sd && gl && !/[?&]no3d/.test(q)) d.classList.add('fx');
+  })();
+</script>
+<link rel="stylesheet" href="assets/css/site.css">
+<script type="importmap">
+{ "imports": { "three": "./assets/vendor/three/three.module.min.js" } }
+</script>
+<script type="module" src="assets/js/main.js"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "NGO",
+  "name": "חסד יסובבנו",
+  "foundingDate": "2009",
+  "address": { "@type": "PostalAddress", "streetAddress": "אשל 26", "addressLocality": "נתיבות", "addressCountry": "IL" },
+  "telephone": "058-5555530",
+  "email": "058555530b@gmail.com"
+}
+</script>
+</head>
+<body>
+<a class="skip-link" href="#main">דלג לתוכן</a>
+
+<svg class="sprite" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="wm-emblem" viewBox="0 0 120 128"><rect x="1.5" y="1.5" width="117" height="125" rx="7" fill="none" stroke="currentColor" stroke-width="1.4"/><rect x="4.6" y="4.6" width="110.8" height="118.8" rx="4.6" fill="none" stroke="currentColor" stroke-width=".6"/><rect x="12.5" y="12.5" width="24" height="22" rx="2.6" fill="currentColor"/><rect x="48" y="12.5" width="24" height="22" rx="2.6" fill="currentColor"/><rect x="83.5" y="12.5" width="24" height="22" rx="2.6" fill="currentColor"/><rect x="12.5" y="39.5" width="24" height="22" rx="2.6" fill="currentColor"/><rect x="48" y="39.5" width="24" height="22" rx="2.6" fill="currentColor"/><rect x="83.5" y="39.5" width="24" height="22" rx="2.6" fill="currentColor"/><rect x="12.5" y="66.5" width="24" height="22" rx="2.6" fill="currentColor"/><rect x="48" y="66.5" width="24" height="22" rx="2.6" fill="currentColor"/><rect x="83.5" y="66.5" width="24" height="22" rx="2.6" fill="currentColor"/><rect x="12.5" y="93.5" width="24" height="22" rx="2.6" fill="currentColor"/><rect x="48" y="93.5" width="24" height="22" rx="2.6" fill="currentColor"/><rect x="83.5" y="93.5" width="24" height="22" rx="2.6" fill="currentColor"/></symbol>
+  <symbol id="wm-orb" viewBox="0 0 200 200"><circle cx="100" cy="100" r="95" fill="none" stroke="currentColor" stroke-width="2.4"/><g fill="none" stroke="currentColor" stroke-width=".8"><circle cx="100" cy="100" r="46"/><circle cx="100" cy="100" r="60"/><circle cx="100" cy="100" r="74"/><circle cx="100" cy="100" r="88"/></g><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="100" y1="67" x2="100" y2="5"/><line x1="116.5" y1="71.42" x2="147.5" y2="17.73"/><line x1="128.58" y1="83.5" x2="182.27" y2="52.5"/><line x1="133" y1="100" x2="195" y2="100"/><line x1="128.58" y1="116.5" x2="182.27" y2="147.5"/><line x1="116.5" y1="128.58" x2="147.5" y2="182.27"/><line x1="100" y1="133" x2="100" y2="195"/><line x1="83.5" y1="128.58" x2="52.5" y2="182.27"/><line x1="71.42" y1="116.5" x2="17.73" y2="147.5"/><line x1="67" y1="100" x2="5" y2="100"/><line x1="71.42" y1="83.5" x2="17.73" y2="52.5"/><line x1="83.5" y1="71.42" x2="52.5" y2="17.73"/></g><circle cx="100" cy="100" r="29" fill="currentColor"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20.6s-7.6-4.6-9.3-9.5C1.6 7.9 3.6 4.6 7 4.6c2 0 3.4 1.1 5 3 1.6-1.9 3-3 5-3 3.4 0 5.4 3.3 4.3 6.5-1.7 4.9-9.3 9.5-9.3 9.5z" fill="currentColor"/></symbol>
+  <symbol id="i-wa" viewBox="0 0 24 24"><path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6.5-6.2-6.5-11.2a6.5 6.5 0 0113 0C18.5 14.8 12 21 12 21z"/><circle cx="12" cy="9.8" r="2.3"/></g></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M20.5 16.4v2.7a1.8 1.8 0 01-2 1.8 17.8 17.8 0 01-7.7-2.8 17.5 17.5 0 01-5.4-5.4A17.8 17.8 0 012.6 4.9a1.8 1.8 0 011.8-2h2.7a1.8 1.8 0 011.8 1.6c.1.9.3 1.7.6 2.5a1.8 1.8 0 01-.4 1.9L7.9 10a14.4 14.4 0 005.4 5.4l1.1-1.1a1.8 1.8 0 011.9-.4c.8.3 1.6.5 2.5.6a1.8 1.8 0 011.7 1.9z"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2.8" y="5" width="18.4" height="14" rx="2.2"/><path d="M3.4 6.4L12 12.8l8.6-6.4"/></g></symbol>
+  <symbol id="i-quote" viewBox="0 0 32 24"><path fill="currentColor" d="M0 24V14.4C0 6.6 4.1 1.8 11.4 0l1.4 3.1C8.6 4.6 6.6 7.4 6.4 11.2H12V24H0zm19.2 0V14.4c0-7.8 4.1-12.6 11.4-14.4L32 3.1c-4.2 1.5-6.2 4.3-6.4 8.1h5.6V24H19.2z"/></symbol>
+  <symbol id="i-dignity" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="7" r="3"/><path d="M6 21v-1a6 6 0 0112 0v1"/><path d="M9.5 3.6L12 1.6l2.5 2"/></g></symbol>
+  <symbol id="i-soul" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21c-5-3-9-7.5-9-12a9 9 0 0118 0c0 4.5-4 9-9 12z"/><path d="M12 21V9"/><path d="M8.5 13l3.5-4 3.5 4"/></g></symbol>
+  <symbol id="i-home" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5L12 3l9 8.5"/><path d="M5 10v9a1 1 0 001 1h4v-5h4v5h4a1 1 0 001-1v-9"/></g></symbol>
+  <symbol id="i-medical" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 3.5h5v6h6v5h-6v6h-5v-6h-6v-5h6z"/></g></symbol>
+  <symbol id="i-seedling" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22V11"/><path d="M12 11C12 7 8 3 3 3c0 4.5 3.8 8 9 8z"/><path d="M12 11c0-4 4-8 9-8 0 4.5-3.8 8-9 8z"/></g></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 3.5v7c0 5-3.5 9-8 11.5C7.5 21.5 4 17.5 4 12.5v-7L12 2z"/><path d="M9 12l2 2 4-4"/></g></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.5C10.2 5 7.8 4.3 4 4.3v14c3.8 0 6.2.7 8 2.2 1.8-1.5 4.2-2.2 8-2.2v-14c-3.8 0-6.2.7-8 2.2z"/><path d="M12 6.5v14"/></g></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M4 8h16M4 16h16"/></g></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></g></symbol>
+</svg>
+
+<!-- luminous background: drifting colour blobs + grain -->
+<div class="atmo" aria-hidden="true">
+  <span class="blob b1"></span><span class="blob b2"></span><span class="blob b3"></span><span class="blob b4"></span>
+  <span class="grain"></span>
+</div>
+
+<header class="site-header" data-header>
+  <div class="header-bar glass">
+    <a class="brand" href="#top" aria-label="חסד יסובבנו — לראש העמוד">
+      <img src="assets/img/emblem.svg" width="28" height="30" alt="">
+      <span class="brand-name">חסד יסובבנו</span>
+    </a>
+    <nav class="nav" aria-label="ניווט ראשי">
+      <a href="#about">אודות</a>
+      <a href="#timeline">הסיפור שלנו</a>
+      <a href="#pillars">עמודי התווך</a>
+      <a href="#gallery">מילים ורעיונות</a>
+      <a href="#contact">צור קשר</a>
+    </nav>
+    <div class="header-actions">
+      <a class="pill pill--sm" href="https://www.matara.pro/nedarimplus/online/?mosad=5776132" target="_blank" rel="noopener noreferrer">תרומה</a>
+      <button class="icon-btn menu-btn" type="button" data-open-menu aria-haspopup="dialog" aria-controls="menu"><svg width="22" height="22" aria-hidden="true"><use href="#i-menu"/></svg><span class="sr-only">תפריט</span></button>
+    </div>
+  </div>
+</header>
+
+<dialog class="menu glass" id="menu" aria-label="תפריט">
+  <button class="icon-btn menu-close" type="button" data-close><svg width="22" height="22" aria-hidden="true"><use href="#i-close"/></svg><span class="sr-only">סגור</span></button>
+  <nav class="menu-nav" aria-label="ניווט">
+    <a href="#about" data-close-nav>אודות</a>
+    <a href="#timeline" data-close-nav>הסיפור שלנו</a>
+    <a href="#pillars" data-close-nav>עמודי התווך</a>
+    <a href="#gallery" data-close-nav>מילים ורעיונות</a>
+    <a href="#donate" data-close-nav>תרומה</a>
+    <a href="#contact" data-close-nav>צור קשר</a>
+  </nav>
+</dialog>
+
+<main id="main">
+
+<!-- HERO -->
+<section class="hero" id="top" aria-labelledby="hero-title">
+  <div class="hero-stage">
+    <canvas class="hero-canvas" aria-hidden="true"></canvas>
+    <div class="hero-copy" data-hero-copy>
+      <img class="hero-emblem" src="assets/img/emblem.svg" width="120" height="128" alt="">
+      <h1 class="hero-title" id="hero-title">חסד יסובבנו</h1>
+      <p class="hero-sub">הלב הפועם של כולנו</p>
+      <p class="hero-verse hero-verse--static">וְהַבּוֹטֵחַ בַּה' חֶסֶד יְסוֹבְבֶנּוּ</p>
+      <div class="hero-ctas">
+        <a class="pill" href="https://www.matara.pro/nedarimplus/online/?mosad=5776132" target="_blank" rel="noopener noreferrer"><svg width="16" height="16" aria-hidden="true"><use href="#i-heart"/></svg>לתרומה</a>
+        <a class="pill pill--glass" href="#about">אודות העמותה</a>
+        <a class="pill pill--glass" href="#contact">צור קשר</a>
+      </div>
+    </div>
+    <p class="hero-verse hero-verse--3d" aria-hidden="true">וְהַבּוֹטֵחַ בַּה' חֶסֶד יְסוֹבְבֶנּוּ</p>
+    <div class="scroll-cue" aria-hidden="true"><span></span></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section about" id="about" aria-labelledby="about-title">
+  <svg class="wm wm--emblem wm--about" aria-hidden="true" focusable="false" viewBox="0 0 120 128"><use href="#wm-emblem" class="wm-hi" x=".4" y=".4"/><use href="#wm-emblem" class="wm-lo" x="-.4" y="-.4"/><use href="#wm-emblem" class="wm-face"/></svg>
+  <div class="container narrow">
+    <header class="sec-head reveal">
+      <span class="badge glass-chip">פועלת מאז שנת 2009</span>
+      <h2 class="sec-title" id="about-title">אודות העמותה</h2>
+    </header>
+    <article class="glass panel about-panel reveal">
+      <svg class="about-quote" width="40" height="30" aria-hidden="true"><use href="#i-quote"/></svg>
+      <p>תחת הנהגתו המסורה של <strong>הרב שלום יוסף ברבי</strong>, פועלת עמותת חסד יסובבנו כבר למעלה מ-15 שנה לטובת קהילות ישראל — מנתיבות ומעבר לה.</p>
+      <p>הרב ברבי הקים את העמותה מתוך אהבת ישראל עמוקה ומתוך ראיית הצורך הגדול בסיוע אמיתי, רגיש ואנושי לאנשים הנמצאים במצוקה. מאז ועד היום, חסד יסובבנו הפכה לבית חם עבור אלפי משפחות.</p>
+      <p>העמותה פועלת בשבעה עמודי תווך: קיום בכבוד, ריפוי הנפש, ביצור הבית היהודי, תמיכה במצבי חולי, השקעה בדור העתיד, הוקרה ללוחמים, וקול התורה.</p>
+      <div class="seal">
+        <img src="assets/img/emblem.svg" width="44" height="47" alt="" loading="lazy">
+        <div>
+          <span class="seal-name">חסד יסובבנו</span>
+          <span class="seal-since">מאז 2009</span>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section class="section timeline" id="timeline" aria-labelledby="timeline-title">
+  <div class="container">
+    <header class="sec-head reveal">
+      <h2 class="sec-title" id="timeline-title">הסיפור שלנו</h2>
+    </header>
+    <ol class="tl">
+      <li class="tl-item reveal">
+        <span class="tl-dot" aria-hidden="true"></span>
+        <div class="glass tl-card">
+          <span class="tl-year">2009</span>
+          <p>הרב שלום יוסף ברבי מקים את עמותת חסד יסובבנו בנתיבות, מתוך אהבה עמוקה לקהילה ורצון לסייע לנזקקים בכבוד.</p>
+        </div>
+      </li>
+      <li class="tl-item reveal">
+        <span class="tl-dot" aria-hidden="true"></span>
+        <div class="glass tl-card">
+          <span class="tl-year">2014</span>
+          <p>הרחבת הפעילות לערים נוספות בדרום הארץ, תוך הגדלה משמעותית של מספר המשפחות המסוייעות.</p>
+        </div>
+      </li>
+      <li class="tl-item reveal">
+        <span class="tl-dot" aria-hidden="true"></span>
+        <div class="glass tl-card">
+          <span class="tl-year">2020</span>
+          <p>הקמת מערך סיוע מורחב בתקופת הקורונה — חלוקת מזון, תמיכה נפשית ועזרה לאלפי משפחות שנפגעו.</p>
+        </div>
+      </li>
+      <li class="tl-item reveal">
+        <span class="tl-dot" aria-hidden="true"></span>
+        <div class="glass tl-card">
+          <span class="tl-year"><bdi>2023–2025</bdi></span>
+          <p>תמיכה מסיבית בלוחמים ומשפחותיהם בתקופת המלחמה — ליווי אישי, סיוע חומרי וחיזוק רגשי יומיומי.</p>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="section stats" id="stats" aria-labelledby="stats-title">
+  <div class="container">
+    <header class="sec-head reveal">
+      <h2 class="sec-title" id="stats-title">בנתונים</h2>
+    </header>
+    <ul class="stats-grid reveal">
+      <li class="glass stat"><span class="stat-num" dir="ltr"><span data-count="15">15</span>+</span><span class="stat-label">שנות פעילות</span></li>
+      <li class="glass stat"><span class="stat-num"><span data-count="7">7</span></span><span class="stat-label">עמודי תווך</span></li>
+      <li class="glass stat"><span class="stat-num">אלפי</span><span class="stat-label">משפחות</span></li>
+      <li class="glass stat"><span class="stat-num" dir="ltr">24/7</span><span class="stat-label">זמינות</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- PILLARS -->
+<section class="section pillars" id="pillars" aria-labelledby="pillars-title">
+  <svg class="wm wm--orb wm--pillars" aria-hidden="true" focusable="false" viewBox="0 0 200 200"><use href="#wm-orb" class="wm-hi" x=".6" y=".6"/><use href="#wm-orb" class="wm-lo" x="-.6" y="-.6"/><use href="#wm-orb" class="wm-face"/></svg>
+  <div class="container">
+    <header class="sec-head reveal">
+      <h2 class="sec-title" id="pillars-title">עמודי התווך</h2>
+    </header>
+    <ul class="pillars-grid">
+      <li class="glass pillar reveal">
+        <picture class="photo">
+          <source type="image/avif" srcset="assets/img/photos/dignity-480.avif 480w, assets/img/photos/dignity-800.avif 800w, assets/img/photos/dignity-1200.avif 1200w" sizes="(min-width: 1100px) 360px, (min-width: 700px) 46vw, 92vw">
+          <source type="image/webp" srcset="assets/img/photos/dignity-480.webp 480w, assets/img/photos/dignity-800.webp 800w, assets/img/photos/dignity-1200.webp 1200w" sizes="(min-width: 1100px) 360px, (min-width: 700px) 46vw, 92vw">
+          <img src="assets/img/photos/dignity-800.webp" width="1200" height="800" alt="" loading="lazy" decoding="async">
+        </picture>
+        <div class="pillar-body">
+          <span class="chip"><svg width="24" height="24" aria-hidden="true"><use href="#i-dignity"/></svg></span>
+          <h3>קיום בכבוד</h3>
+          <p>סיוע חומרי ומעשי לאנשים הנמצאים במצוקה כלכלית, תוך שמירה מוחלטת על כבוד האדם ופרטיותו.</p>
+        </div>
+      </li>
+      <li class="glass pillar reveal">
+        <picture class="photo">
+          <source type="image/avif" srcset="assets/img/photos/soul-480.avif 480w, assets/img/photos/soul-800.avif 800w, assets/img/photos/soul-1200.avif 1200w" sizes="(min-width: 1100px) 360px, (min-width: 700px) 46vw, 92vw">
+          <source type="image/webp" srcset="assets/img/photos/soul-480.webp 480w, assets/img/photos/soul-800.webp 800w, assets/img/photos/soul-1200.webp 1200w" sizes="(min-width: 1100px) 360px, (min-width: 700px) 46vw, 92vw">
+          <img src="assets/img/photos/soul-800.webp" width="1200" height="800" alt="" loading="lazy" decoding="async">
+        </picture>
+        <div class="pillar-body">
+          <span class="chip"><svg width="24" height="24" aria-hidden="true"><use href="#i-soul"/></svg></span>
+          <h3>ריפוי הנפש</h3>
+          <p>ליווי פסיכולוגי ורגשי, תמיכה נפשית ומתן כוח להמשך הדרך בעתות קושי וסערה.</p>
+        </div>
+      </li>
+      <li class="glass pillar reveal">
+        <picture class="photo">
+          <source type="image/avif" srcset="assets/img/photos/home-480.avif 480w, assets/img/photos/home-800.avif 800w, assets/img/photos/home-1200.avif 1200w" sizes="(min-width: 1100px) 360px, (min-width: 700px) 46vw, 92vw">
+          <source type="image/webp" srcset="assets/img/photos/home-480.webp 480w, assets/img/photos/home-800.webp 800w, assets/img/photos/home-1200.webp 1200w" sizes="(min-width: 1100px) 360px, (min-width: 700px) 46vw, 92vw">
+          <img src="assets/img/photos/home-800.webp" width="1200" height="800" alt="" loading="lazy" decoding="async">
+        </picture>
+        <div class="pillar-body">
+          <span class="chip"><svg width="24" height="24" aria-hidden="true"><use href="#i-home"/></svg></span>
+          <h3>ביצור הבית היהודי</h3>
+          <p>חיזוק מוסד המשפחה, סיוע לזוגות צעירים וגיבוש הזהות היהודית בתוך הבית.</p>
+        </div>
+      </li>
+      <li class="glass pillar reveal">
+        <picture class="photo">
+          <source type="image/avif" srcset="assets/img/photos/medical-480.avif 480w, assets/img/photos/medical-800.avif 800w, assets/img/photos/medical-1200.avif 1200w" sizes="(min-width: 1100px) 360px, (min-width: 700px) 46vw, 92vw">
+          <source type="image/webp" srcset="assets/img/photos/medical-480.webp 480w, assets/img/photos/medical-800.webp 800w, assets/img/photos/medical-1200.webp 1200w" sizes="(min-width: 1100px) 360px, (min-width: 700px) 46vw, 92vw">
+          <img src="assets/img/photos/medical-800.webp" width="1200" height="800" alt="" loading="lazy" decoding="async">
+        </picture>
+        <div class="pillar-body">
+          <span class="chip"><svg width="24" height="24" aria-hidden="true"><use href="#i-medical"/></svg></span>
+          <h3>תמיכה במצבי חולי</h3>
+          <p>סיוע מקיף למשפחות המתמודדות עם מחלה — רפואי, כלכלי ורגשי — לכל אורך הדרך.</p>
+        </div>
+      </li>
+      <li class="glass pillar reveal">
+        <picture class="photo">
+          <source type="image/avif" srcset="assets/img/photos/future-480.avif 480w, assets/img/photos/future-800.avif 800w, assets/img/photos/future-1200.avif 1200w" sizes="(min-width: 1100px) 360px, (min-width: 700px) 46vw, 92vw">
+          <source type="image/webp" srcset="assets/img/photos/future-480.webp 480w, assets/img/photos/future-800.webp 800w, assets/img/photos/future-1200.webp 1200w" sizes="(min-width: 1100px) 360px, (min-width: 700px) 46vw, 92vw">
+          <img src="assets/img/photos/future-800.webp" width="1200" height="800" alt="" loading="lazy" decoding="async">
+        </picture>
+        <div class="pillar-body">
+          <span class="chip"><svg width="24" height="24" aria-hidden="true"><use href="#i-seedling"/></svg></span>
+          <h3>השקעה בדור העתיד</h3>
+          <p>חינוך ילדים ונוער, מלגות ותמיכה בצעירים המבקשים לבנות עתיד טוב ומלא תקווה.</p>
+        </div>
+      </li>
+      <li class="glass pillar reveal">
+        <picture class="photo">
+          <source type="image/avif" srcset="assets/img/photos/soldiers-480.avif 480w, assets/img/photos/soldiers-800.avif 800w, assets/img/photos/soldiers-1200.avif 1200w" sizes="(min-width: 1100px) 360px, (min-width: 700px) 46vw, 92vw">
+          <source type="image/webp" srcset="assets/img/photos/soldiers-480.webp 480w, assets/img/photos/soldiers-800.webp 800w, assets/img/photos/soldiers-1200.webp 1200w" sizes="(min-width: 1100px) 360px, (min-width: 700px) 46vw, 92vw">
+          <img src="assets/img/photos/soldiers-800.webp" width="1200" height="800" alt="" loading="lazy" decoding="async">
+        </picture>
+        <div class="pillar-body">
+          <span class="chip"><svg width="24" height="24" aria-hidden="true"><use href="#i-shield"/></svg></span>
+          <h3>הוקרה ללוחמים</h3>
+          <p>תמיכה ואהבה לחיילי צבא ישראל ולמשפחותיהם — בזמן מלחמה ובזמן שגרה.</p>
+        </div>
+      </li>
+      <li class="glass pillar reveal">
+        <picture class="photo">
+          <source type="image/avif" srcset="assets/img/photos/torah-480.avif 480w, assets/img/photos/torah-800.avif 800w, assets/img/photos/torah-1200.avif 1200w" sizes="(min-width: 1100px) 360px, (min-width: 700px) 46vw, 92vw">
+          <source type="image/webp" srcset="assets/img/photos/torah-480.webp 480w, assets/img/photos/torah-800.webp 800w, assets/img/photos/torah-1200.webp 1200w" sizes="(min-width: 1100px) 360px, (min-width: 700px) 46vw, 92vw">
+          <img src="assets/img/photos/torah-800.webp" width="1200" height="800" alt="" loading="lazy" decoding="async">
+        </picture>
+        <div class="pillar-body">
+          <span class="chip"><svg width="24" height="24" aria-hidden="true"><use href="#i-book"/></svg></span>
+          <h3>קול התורה</h3>
+          <p>הפצת תורה וידע יהודי, שמירה על המסורת העשירה והעברתה בגאווה לדורות הבאים.</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- DONATE -->
+<section class="section donate" id="donate" aria-labelledby="donate-title">
+  <div class="container narrow">
+    <div class="glass panel donate-panel reveal">
+      <svg class="wm wm--orb wm--donate" aria-hidden="true" focusable="false" viewBox="0 0 200 200"><use href="#wm-orb" class="wm-hi" x=".6" y=".6"/><use href="#wm-orb" class="wm-lo" x="-.6" y="-.6"/><use href="#wm-orb" class="wm-face"/></svg>
+      <span class="chip chip--lg"><svg width="26" height="26" aria-hidden="true"><use href="#i-heart"/></svg></span>
+      <h2 class="sec-title" id="donate-title">תמכו במפעל החסד</h2>
+      <p class="donate-text">כל תרומה, גדולה כקטנה, מסייעת לנו להמשיך ולפעול לטובת כל הזקוקים לעזרה</p>
+      <a class="pill pill--lg" href="https://www.matara.pro/nedarimplus/online/?mosad=5776132" target="_blank" rel="noopener noreferrer"><svg width="18" height="18" aria-hidden="true"><use href="#i-heart"/></svg>לתרומה לחצו כאן</a>
+      <p class="donate-sub">תרומה מאובטחת דרך נדרים פלוס</p>
+    </div>
+  </div>
+</section>
+
+<!-- WORDS (gallery) -->
+<section class="section words" id="gallery" aria-labelledby="gallery-title">
+  <div class="container">
+    <header class="sec-head reveal">
+      <h2 class="sec-title" id="gallery-title">מילים ורעיונות</h2>
+      <p class="sec-kicker">מילים מהלב</p>
+    </header>
+    <ul class="quotes">
+      <li class="glass quote reveal">
+        <svg class="quote-mark" width="32" height="24" aria-hidden="true"><use href="#i-quote"/></svg>
+        <blockquote><p>חסד יסובבנו שינו את חיי המשפחה שלנו. בזכותם עברנו את התקופה הקשה ביותר עם כבוד ואהבה.</p></blockquote>
+        <p class="quote-by">— משפחה מנתיבות</p>
+      </li>
+      <li class="glass quote reveal">
+        <svg class="quote-mark" width="32" height="24" aria-hidden="true"><use href="#i-quote"/></svg>
+        <blockquote><p>הרב ברבי ליווה אותנו עם רגישות ומסירות מדהימה. זו עמותה שפועלת באמת מהלב.</p></blockquote>
+        <p class="quote-by">— א.כ., באר שבע</p>
+      </li>
+      <li class="glass quote reveal">
+        <svg class="quote-mark" width="32" height="24" aria-hidden="true"><use href="#i-quote"/></svg>
+        <blockquote><p>התמיכה שקיבלנו בזמן המלחמה הייתה מעבר לכל ציפייה. תודה ענקית לכל הצוות המדהים.</p></blockquote>
+        <p class="quote-by">— משפחת לוחם</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section contact" id="contact" aria-labelledby="contact-title">
+  <svg class="wm wm--emblem wm--contact" aria-hidden="true" focusable="false" viewBox="0 0 120 128"><use href="#wm-emblem" class="wm-hi" x=".4" y=".4"/><use href="#wm-emblem" class="wm-lo" x="-.4" y="-.4"/><use href="#wm-emblem" class="wm-face"/></svg>
+  <div class="container">
+    <header class="sec-head reveal">
+      <h2 class="sec-title" id="contact-title">צור קשר</h2>
+    </header>
+    <div class="contact-grid">
+      <form class="glass panel form reveal" data-form novalidate>
+        <div class="field">
+          <label for="f-name">שם מלא</label>
+          <input type="text" id="f-name" name="name" placeholder="הכנס שם מלא" autocomplete="name" required>
+        </div>
+        <div class="field">
+          <label for="f-phone">טלפון</label>
+          <input type="tel" id="f-phone" name="phone" placeholder="050-0000000" autocomplete="tel" inputmode="tel" dir="ltr" required>
+        </div>
+        <div class="field">
+          <label for="f-subject">נושא</label>
+          <div class="select">
+            <select id="f-subject" name="subject">
+              <option value="">בחר נושא</option>
+              <option>תרומה</option>
+              <option>בקשת עזרה</option>
+              <option>שיתוף פעולה</option>
+              <option>אחר</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label for="f-msg">הודעה</label>
+          <textarea id="f-msg" name="message" rows="4" placeholder="כתוב הודעתך כאן..."></textarea>
+        </div>
+        <button class="pill pill--block" type="submit" data-submit>שלח הודעה</button>
+        <p class="form-status" role="status" aria-live="polite" data-status></p>
+      </form>
+
+      <div class="contact-cards reveal">
+        <div class="glass c-card">
+          <span class="chip"><svg width="22" height="22" aria-hidden="true"><use href="#i-pin"/></svg></span>
+          <div><span class="c-label">כתובת</span><span class="c-val">רחוב אשל 26, נתיבות</span></div>
+        </div>
+        <a class="glass c-card c-card--link" href="tel:0585555530">
+          <span class="chip"><svg width="22" height="22" aria-hidden="true"><use href="#i-phone"/></svg></span>
+          <div><span class="c-label">טלפון</span><span class="c-val" dir="ltr">058-5555530</span></div>
+        </a>
+        <a class="glass c-card c-card--link" href="mailto:058555530b@gmail.com">
+          <span class="chip"><svg width="22" height="22" aria-hidden="true"><use href="#i-mail"/></svg></span>
+          <div><span class="c-label">דואר אלקטרוני</span><span class="c-val" dir="ltr">058555530b@gmail.com</span></div>
+        </a>
+        <div class="glass c-card c-card--place">
+          <svg class="place-pin" width="30" height="30" aria-hidden="true"><use href="#i-pin"/></svg>
+          <span class="place-city">נתיבות, ישראל</span>
+          <span class="place-street">רחוב אשל 26</span>
+        </div>
+        <div class="glass c-card c-card--follow">
+          <span class="c-label">עקבו אחרינו</span>
+          <a class="social" href="https://wa.me/9720585555530" target="_blank" rel="noopener noreferrer"><svg width="20" height="20" aria-hidden="true"><use href="#i-wa"/></svg><span class="sr-only">WhatsApp</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="glass footer-panel">
+      <div class="footer-brand">
+        <img src="assets/img/emblem.svg" width="56" height="60" alt="" loading="lazy">
+        <p class="footer-name">חסד יסובבנו</p>
+        <p class="footer-tagline">הלב הפועם של כולנו — עמותה פועלת מאז 2009 לטובת קהילות ישראל.</p>
+      </div>
+      <nav class="footer-col" aria-labelledby="f-nav-title">
+        <p class="footer-col-title" id="f-nav-title">ניווט</p>
+        <ul>
+          <li><a href="#about">אודות</a></li>
+          <li><a href="#timeline">הסיפור שלנו</a></li>
+          <li><a href="#pillars">עמודי התווך</a></li>
+          <li><a href="#gallery">מילים ורעיונות</a></li>
+          <li><a href="#donate">תרומה</a></li>
+          <li><a href="#contact">צור קשר</a></li>
+        </ul>
+      </nav>
+      <div class="footer-col">
+        <p class="footer-col-title">יצירת קשר</p>
+        <ul>
+          <li class="f-line"><svg width="16" height="16" aria-hidden="true"><use href="#i-pin"/></svg>רחוב אשל 26, נתיבות</li>
+          <li><a class="f-line" href="tel:0585555530"><svg width="16" height="16" aria-hidden="true"><use href="#i-phone"/></svg><span dir="ltr">058-5555530</span></a></li>
+          <li><a class="f-line" href="mailto:058555530b@gmail.com"><svg width="16" height="16" aria-hidden="true"><use href="#i-mail"/></svg><span dir="ltr">058555530b@gmail.com</span></a></li>
+        </ul>
+        <a class="pill pill--sm" href="https://www.matara.pro/nedarimplus/online/?mosad=5776132" target="_blank" rel="noopener noreferrer">לתרומה</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <p>© 2025 עמותת חסד יסובבנו · רחוב אשל 26, נתיבות · כל הזכויות שמורות</p>
+      <p class="foot-verse">וְהַבּוֹטֵחַ בַּה' חֶסֶד יְסוֹבְבֶנּוּ</p>
+    </div>
+  </div>
+</footer>
+
+<!-- floating: palette switcher + WhatsApp -->
+<aside class="floating" aria-label="פלטת צבעים ו-WhatsApp">
+<div class="palette glass" role="radiogroup" aria-label="פלטת צבעים" data-palette-switch>
+  <button type="button" role="radio" class="swatch sw-lavender" data-set-palette="lavender" aria-checked="true" title="ערפל לבנדר"><span class="sr-only">ערפל לבנדר</span></button>
+  <button type="button" role="radio" class="swatch sw-mint" data-set-palette="mint" aria-checked="false" title="מנטה וים"><span class="sr-only">מנטה וים</span></button>
+  <button type="button" role="radio" class="swatch sw-peach" data-set-palette="peach" aria-checked="false" title="אפרסק ורד"><span class="sr-only">אפרסק ורד</span></button>
+</div>
+<a class="fab-wa" href="https://wa.me/9720585555530" target="_blank" rel="noopener noreferrer"><svg width="26" height="26" aria-hidden="true"><use href="#i-wa"/></svg><span class="sr-only">WhatsApp</span></a>
+</aside>
+
+</body>
+</html>
